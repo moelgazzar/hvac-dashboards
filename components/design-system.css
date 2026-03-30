@@ -104,16 +104,16 @@ body {
 /* Collapsed state */
 body.sidebar-collapsed .sidebar { width: var(--sidebar-collapsed); }
 body.sidebar-collapsed .main { margin-left: var(--sidebar-collapsed); }
+body.sidebar-collapsed .sidebar-brand { justify-content: center; padding: 20px 8px 16px; }
 body.sidebar-collapsed .sidebar-brand .brand-name { display: none; }
+body.sidebar-collapsed .sidebar-section { padding: 12px 8px 8px; }
 body.sidebar-collapsed .sidebar-section-label { display: none; }
 body.sidebar-collapsed .sidebar-item { justify-content: center; padding: 9px; }
-body.sidebar-collapsed .sidebar-item span:not(.sidebar-badge) { display: none; }
+body.sidebar-collapsed .sidebar-label { display: none; }
 body.sidebar-collapsed .sidebar-badge { display: none; }
 body.sidebar-collapsed .sidebar-footer { padding: 12px 8px; }
 body.sidebar-collapsed .sidebar-user-info { display: none; }
 body.sidebar-collapsed .sidebar-user { justify-content: center; }
-body.sidebar-collapsed .sidebar-brand { justify-content: center; padding: 20px 8px 16px; }
-body.sidebar-collapsed .sidebar-section { padding: 12px 8px 8px; }
 body.sidebar-collapsed .sidebar-toggle { transform: rotate(180deg); }
 
 .sidebar-brand {
