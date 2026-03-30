@@ -295,7 +295,12 @@ function renderKPIs() {
   const bookingRate = getVal('bookingRate', ((rawTotalBooked / rawTotalCalls) * 100));
   const totalBooked = Math.round(totalCalls * bookingRate / 100);
   const totalRev = totalBooked * avgTicket;
-  const totalAI = aiData.reduce((s, r) => s + r.ai_answered, 0);
+  // AI answer rate from AI-active months only (May+, month_order >= 5)
+  const aiMonths = aiData.filter(r => r.month_order >= 5);
+  const aiMonthsCalls = aiMonths.reduce((s, r) => s + r.total_calls, 0);
+  const aiMonthsAnswered = aiMonths.reduce((s, r) => s + r.ai_answered, 0);
+  const aiRate = aiMonthsCalls > 0 ? aiMonthsAnswered / aiMonthsCalls : 0.98;
+  const totalAI = Math.round(totalCalls * aiRate);
 
   document.getElementById('kpis').innerHTML = `
     <div class="kpi-card editable-kpi" data-kpi="totalCalls" onclick="editKPI(this)">
