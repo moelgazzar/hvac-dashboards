@@ -361,7 +361,7 @@ function initCharts() {
 
   callsChart = new ApexCharts(document.querySelector('#chart-calls'), {
     chart: { type: 'area', height: 280, toolbar: { show: false }, fontFamily: 'Inter' },
-    series: [{ name: 'Total Calls', data: cd.map(r => r.total_calls) }, { name: 'AI Answered', data: cd.map(r => r.ai_answered) }],
+    series: [{ name: 'Total Calls', data: cd.map(r => r.total_calls) }, { name: 'AI Answered', data: cd.map(r => r.month_order >= 5 ? r.ai_answered : 0) }],
     colors: ['#4896FE', '#16C8C7'],
     fill: { type: 'gradient', gradient: { shadeIntensity: 1, opacityFrom: 0.35, opacityTo: 0.02, stops: [0, 90, 100] } },
     stroke: { width: 2.5, curve: 'smooth' },
