@@ -83,24 +83,20 @@ body {
 
 /* Sidebar collapse toggle */
 .sidebar-toggle {
-  position: absolute;
-  top: 20px;
-  right: -12px;
-  width: 24px;
-  height: 24px;
-  background: #fff;
-  border: 1px solid var(--gray-200);
-  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 8px;
+  margin: 0 12px 8px;
+  border-radius: var(--radius-sm);
   cursor: pointer;
-  z-index: 101;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
-  transition: transform 0.2s ease;
+  color: var(--gray-400);
+  transition: all 0.15s;
+  border: none;
+  background: none;
 }
-.sidebar-toggle:hover { background: var(--gray-50); }
-.sidebar-toggle svg { width: 14px; height: 14px; color: var(--gray-500); transition: transform 0.2s ease; }
+.sidebar-toggle:hover { background: var(--gray-100); color: var(--gray-600); }
+.sidebar-toggle svg { width: 18px; height: 18px; stroke-width: 1.8; transition: transform 0.2s ease; }
 
 /* Collapsed state */
 body.sidebar-collapsed .sidebar { width: var(--sidebar-collapsed); }
