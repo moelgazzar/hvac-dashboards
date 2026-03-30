@@ -18,21 +18,21 @@
 
   <div class="sidebar-section">
     <div class="sidebar-section-label">Overview</div>
-    <a class="sidebar-item active">
+    <a class="sidebar-item active" data-view="dashboard" onclick="switchView('dashboard')">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
       Dashboard
     </a>
-    <a class="sidebar-item">
+    <a class="sidebar-item" data-view="calllog" onclick="switchView('calllog')">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
       Call Log
-      <span class="sidebar-badge">1,847</span>
+      <span class="sidebar-badge" id="badge-calls">--</span>
     </a>
-    <a class="sidebar-item">
+    <a class="sidebar-item" data-view="appointments" onclick="switchView('appointments')">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
       Appointments
-      <span class="sidebar-badge">794</span>
+      <span class="sidebar-badge" id="badge-appts">--</span>
     </a>
-    <a class="sidebar-item">
+    <a class="sidebar-item" data-view="customers" onclick="switchView('customers')">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
       Customers
     </a>
@@ -40,15 +40,15 @@
 
   <div class="sidebar-section">
     <div class="sidebar-section-label">System</div>
-    <a class="sidebar-item">
+    <a class="sidebar-item" data-view="buildlog" onclick="switchView('buildlog')">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
       Build Log
     </a>
-    <a class="sidebar-item">
+    <a class="sidebar-item" data-view="analytics" onclick="switchView('analytics')">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
       Analytics
     </a>
-    <a class="sidebar-item">
+    <a class="sidebar-item" data-view="settings" onclick="switchView('settings')">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
       Agent Settings
     </a>
@@ -69,7 +69,7 @@
 <div class="main">
   <div class="topbar">
     <div class="topbar-left">
-      <h1>Dashboard</h1>
+      <h1 id="page-title">Dashboard</h1>
     </div>
     <div class="topbar-right">
       <div class="date-range">
@@ -81,165 +81,118 @@
   </div>
 
   <div class="content">
-    <!-- System Cost + Build Time -->
-    <div class="system-info-row" id="system-info"></div>
 
-    <!-- KPI Cards -->
-    <div class="kpi-grid cols-5" id="kpis"></div>
+    <!-- ====== DASHBOARD VIEW ====== -->
+    <div id="view-dashboard" class="view active">
+      <!-- System Cost + Build Time -->
+      <div class="system-info-row" id="system-info"></div>
 
-    <!-- Charts Row -->
-    <div class="chart-grid cols-3">
+      <div class="kpi-grid cols-5" id="kpis"></div>
+
+      <div class="chart-grid cols-3">
+        <div class="chart-card">
+          <div class="chart-header">
+            <div>
+              <div class="chart-title">Revenue by Month</div>
+              <div class="chart-meta mt-4">Attributed from AI-booked appointments</div>
+            </div>
+            <div class="chart-toolbar"><button>Monthly</button></div>
+          </div>
+          <div id="chart-revenue" style="height:280px"></div>
+        </div>
+        <div class="chart-card">
+          <div class="chart-header">
+            <div>
+              <div class="chart-title">Call Volume</div>
+              <div class="chart-meta mt-4">AI handled vs total inbound</div>
+            </div>
+          </div>
+          <div id="chart-calls" style="height:280px"></div>
+        </div>
+      </div>
+
       <div class="chart-card">
         <div class="chart-header">
-          <div>
-            <div class="chart-title">Revenue by Month</div>
-            <div class="chart-meta mt-4">Attributed from AI-booked appointments</div>
-          </div>
-          <div class="chart-toolbar">
-            <button>Monthly</button>
-          </div>
+          <div class="chart-title">Monthly Breakdown</div>
+          <div class="text-xs text-muted">Updated 2 min ago</div>
         </div>
-        <div id="chart-revenue" style="height:280px"></div>
+        <div class="mt-16">
+          <table class="data-table">
+            <thead>
+              <tr><th>Month</th><th>Inbound Calls</th><th>AI Answered</th><th>Missed</th><th>Miss Rate</th><th>Appts Booked</th><th>Avg Ticket</th><th>Revenue</th><th>Avg Response</th></tr>
+            </thead>
+            <tbody id="table-body"></tbody>
+          </table>
+        </div>
       </div>
 
+      <div class="dashboard-footer">
+        <p>Comfort Air HVAC &middot; AI Phone Agent &middot; Powered by ServiceAI</p>
+      </div>
+    </div>
+
+    <!-- ====== CALL LOG VIEW ====== -->
+    <div id="view-calllog" class="view">
+      <div class="view-header">
+        <div style="display:flex;align-items:center;gap:12px">
+          <span class="view-title">Call Log</span>
+          <span class="view-count" id="calllog-count"></span>
+        </div>
+      </div>
+      <div class="filter-pills" id="calllog-filters"></div>
       <div class="chart-card">
-        <div class="chart-header">
-          <div>
-            <div class="chart-title">Call Volume</div>
-            <div class="chart-meta mt-4">AI handled vs total inbound</div>
-          </div>
+        <div class="mt-16" style="max-height:70vh;overflow-y:auto">
+          <table class="data-table">
+            <thead>
+              <tr><th>Date</th><th>Time</th><th>Caller</th><th>Phone</th><th>Type</th><th>After Hours</th><th>AI Handled</th><th>Outcome</th><th>Revenue</th><th>Duration</th></tr>
+            </thead>
+            <tbody id="calllog-body"></tbody>
+          </table>
         </div>
-        <div id="chart-calls" style="height:280px"></div>
       </div>
     </div>
 
-    <!-- Table -->
-    <div class="chart-card">
-      <div class="chart-header">
-        <div class="chart-title">Monthly Breakdown</div>
-        <div class="text-xs text-muted">Updated 2 min ago</div>
+    <!-- ====== APPOINTMENTS VIEW ====== -->
+    <div id="view-appointments" class="view">
+      <div class="view-header">
+        <div style="display:flex;align-items:center;gap:12px">
+          <span class="view-title">Appointments</span>
+          <span class="view-count" id="appts-count"></span>
+        </div>
       </div>
-      <div class="mt-16">
-        <table class="data-table">
-          <thead>
-            <tr>
-              <th>Month</th>
-              <th>Inbound Calls</th>
-              <th>AI Answered</th>
-              <th>Missed</th>
-              <th>Miss Rate</th>
-              <th>Appts Booked</th>
-              <th>Avg Ticket</th>
-              <th>Revenue</th>
-              <th>Avg Response</th>
-            </tr>
-          </thead>
-          <tbody id="table-body"></tbody>
-        </table>
-      </div>
+      <div class="filter-pills" id="appts-filters"></div>
+      <div class="appt-grid" id="appts-grid"></div>
     </div>
 
-    <div class="dashboard-footer">
-      <p>Comfort Air HVAC &middot; AI Phone Agent &middot; Powered by ServiceAI</p>
-    </div>
+    <!-- ====== PLACEHOLDER VIEWS ====== -->
+    <div id="view-customers" class="view"><div class="placeholder-view"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg><div class="pv-title">Customer Directory</div><div class="pv-desc">Customer profiles and history coming soon</div></div></div>
+    <div id="view-buildlog" class="view"><div class="placeholder-view"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg><div class="pv-title">Build Log</div><div class="pv-desc">Claude Code build history coming soon</div></div></div>
+    <div id="view-analytics" class="view"><div class="placeholder-view"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg><div class="pv-title">Analytics</div><div class="pv-desc">Detailed analytics coming soon</div></div></div>
+    <div id="view-settings" class="view"><div class="placeholder-view"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06"/></svg><div class="pv-title">Agent Settings</div><div class="pv-desc">Voice agent configuration coming soon</div></div></div>
+
   </div>
 </div>
 
 <style>
-  .editable-kpi { cursor: pointer; position: relative; }
-  .editable-kpi:hover { background: var(--gray-50); }
-  .editable-kpi .edit-hint { display: none; font-size: 10px; color: var(--purple-500); margin-top: 2px; }
-  .editable-kpi:hover .edit-hint { display: block; }
-  .kpi-input { font-family: var(--font); font-size: 28px; font-weight: 800; color: var(--gray-900); border: 2px solid var(--purple-400); border-radius: 8px; padding: 2px 8px; width: 120px; outline: none; background: var(--purple-50); }
-
-  .system-info-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-    margin-bottom: 24px;
-  }
-  .system-info-card {
-    background: #fff;
-    border: 1px solid var(--gray-200);
-    border-radius: var(--radius-md);
-    padding: 20px 24px;
-    box-shadow: var(--shadow-card);
-  }
-  .system-info-card .si-title {
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--gray-600);
-    margin-bottom: 14px;
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
-  }
-  .cost-breakdown {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    flex-wrap: wrap;
-  }
-  .cost-item {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    font-size: 13px;
-    color: var(--gray-700);
-  }
-  .cost-item .cost-name {
-    font-weight: 500;
-  }
-  .cost-item .cost-val {
-    font-weight: 700;
-    color: var(--gray-900);
-  }
-  .cost-plus {
-    color: var(--gray-400);
-    font-weight: 500;
-    font-size: 14px;
-  }
-  .cost-equals {
-    color: var(--gray-400);
-    font-weight: 500;
-    font-size: 14px;
-    margin-left: 4px;
-  }
-  .cost-total {
-    font-size: 22px;
-    font-weight: 800;
-    color: var(--green-500);
-  }
-  .build-compare {
-    display: grid;
-    grid-template-columns: 1fr auto 1fr;
-    gap: 16px;
-    align-items: center;
-  }
-  .build-box {
-    text-align: center;
-    padding: 12px 16px;
-    border-radius: var(--radius-sm);
-    border: 1px solid var(--gray-200);
-    background: var(--gray-50);
-  }
+  .system-info-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 24px; }
+  .system-info-card { background: #fff; border: 1px solid var(--gray-200); border-radius: var(--radius-md); padding: 20px 24px; box-shadow: var(--shadow-card); }
+  .system-info-card .si-title { font-size: 13px; font-weight: 600; color: var(--gray-600); margin-bottom: 14px; text-transform: uppercase; letter-spacing: 0.04em; }
+  .cost-breakdown { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+  .cost-item { display: flex; align-items: center; gap: 6px; font-size: 13px; color: var(--gray-700); }
+  .cost-item .cost-name { font-weight: 500; }
+  .cost-item .cost-val { font-weight: 700; color: var(--gray-900); }
+  .cost-plus, .cost-equals { color: var(--gray-400); font-weight: 500; font-size: 14px; }
+  .cost-equals { margin-left: 4px; }
+  .cost-total { font-size: 22px; font-weight: 800; color: var(--green-500); }
+  .build-compare { display: grid; grid-template-columns: 1fr auto 1fr; gap: 16px; align-items: center; }
+  .build-box { text-align: center; padding: 12px 16px; border-radius: var(--radius-sm); border: 1px solid var(--gray-200); background: var(--gray-50); }
   .build-box.old { border-color: #fecaca; background: #fff5f5; }
   .build-box.new { border-color: #bbf7d0; background: #f0fdf4; }
-  .build-box .build-label {
-    font-size: 11px;
-    color: var(--gray-500);
-    font-weight: 500;
-    margin-bottom: 4px;
-  }
-  .build-box .build-val {
-    font-size: 20px;
-    font-weight: 800;
-  }
+  .build-box .build-label { font-size: 11px; color: var(--gray-500); font-weight: 500; margin-bottom: 4px; }
+  .build-box .build-val { font-size: 20px; font-weight: 800; }
   .build-box.old .build-val { color: var(--red-500); }
   .build-box.new .build-val { color: var(--green-500); }
-  .build-arrow {
-    font-size: 24px;
-    color: var(--green-500);
-  }
+  .build-arrow { font-size: 24px; color: var(--green-500); }
 </style>
 
 <script>
@@ -247,10 +200,16 @@ const SUPABASE_URL = 'https://gjyaplpthwbujuqrmden.supabase.co';
 const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdqeWFwbHB0aHdidWp1cXJtZGVuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM2OTYxMDQsImV4cCI6MjA4OTI3MjEwNH0.UrRD4OtP6zPT8VurhNWgpf1lQOZFoGwYrwvdEoErUwI';
 
 let aiData = [];
-let avgTicketOverride = null;
+let allCalls = [];
+let overrides = {};
+let revenueChart = null;
+let callsChart = null;
+let viewLoaded = { dashboard: true };
+let activeCallFilter = 'All';
+let activeApptFilter = 'All';
 
-async function fetchData() {
-  const res = await fetch(`${SUPABASE_URL}/rest/v1/monthly_performance?order=month_order.desc`, {
+async function fetchJSON(path) {
+  const res = await fetch(`${SUPABASE_URL}/rest/v1/${path}`, {
     headers: { 'apikey': SUPABASE_KEY, 'Authorization': `Bearer ${SUPABASE_KEY}` }
   });
   return res.json();
@@ -258,11 +217,48 @@ async function fetchData() {
 
 function fmt(n) { return Number(n).toLocaleString(); }
 
-function getAvgTicket() {
-  if (avgTicketOverride !== null) return avgTicketOverride;
-  const totalRev = aiData.reduce((s, r) => s + Number(r.revenue_recovered), 0);
-  const totalBooked = aiData.reduce((s, r) => s + r.appointments_booked, 0);
-  return totalBooked > 0 ? Math.round(totalRev / totalBooked) : 0;
+function switchView(viewId) {
+  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+  const view = document.getElementById('view-' + viewId);
+  if (view) view.classList.add('active');
+  document.querySelectorAll('.sidebar-item').forEach(item => item.classList.remove('active'));
+  const si = document.querySelector(`[data-view="${viewId}"]`);
+  if (si) si.classList.add('active');
+  const titles = { dashboard: 'Dashboard', calllog: 'Call Log', appointments: 'Appointments', customers: 'Customers', buildlog: 'Build Log', analytics: 'Analytics', settings: 'Agent Settings' };
+  document.getElementById('page-title').textContent = titles[viewId] || 'Dashboard';
+  history.replaceState(null, '', '#' + viewId);
+  if (!viewLoaded[viewId]) {
+    if (viewId === 'calllog') renderCallLog();
+    if (viewId === 'appointments') renderAppointments();
+    viewLoaded[viewId] = true;
+  }
+}
+
+window.addEventListener('hashchange', () => { switchView(location.hash.slice(1) || 'dashboard'); });
+
+function editKPI(card) {
+  const kpiName = card.dataset.kpi;
+  const valEl = card.querySelector('.kpi-value');
+  const currentText = valEl.textContent.replace(/[$,%\s]/g, '').replace(/,/g, '');
+  const current = parseFloat(currentText) || 0;
+  valEl.innerHTML = `<input class="kpi-input" type="number" value="${Math.round(current)}" id="kpi-input-active" autofocus>`;
+  const input = document.getElementById('kpi-input-active');
+  input.focus(); input.select();
+  function apply() {
+    const val = parseFloat(input.value);
+    if (val && val > 0) { overrides[kpiName] = val; recalcAll(); }
+    input.removeEventListener('blur', apply);
+  }
+  input.addEventListener('keydown', e => { if (e.key === 'Enter') apply(); });
+  input.addEventListener('blur', apply);
+}
+
+function getVal(key, fallback) { return overrides[key] !== undefined ? overrides[key] : fallback; }
+
+function recalcAll() {
+  renderKPIs(); renderTable(); updateCharts();
+  if (viewLoaded.calllog) renderCallLog();
+  if (viewLoaded.appointments) renderAppointments();
 }
 
 function renderSystemInfo() {
@@ -282,162 +278,168 @@ function renderSystemInfo() {
     <div class="system-info-card">
       <div class="si-title">Build Time</div>
       <div class="build-compare">
-        <div class="build-box old">
-          <div class="build-label">Manual Development</div>
-          <div class="build-val">40+ hrs</div>
-        </div>
+        <div class="build-box old"><div class="build-label">Manual Development</div><div class="build-val">40+ hrs</div></div>
         <div class="build-arrow">&rarr;</div>
-        <div class="build-box new">
-          <div class="build-label">Claude Code</div>
-          <div class="build-val">~10 min</div>
-        </div>
+        <div class="build-box new"><div class="build-label">Claude Code</div><div class="build-val">~10 min</div></div>
       </div>
-    </div>
-  `;
+    </div>`;
 }
 
 function renderKPIs() {
-  const totalCalls = aiData.reduce((s, r) => s + r.total_calls, 0);
+  const rawTotalCalls = aiData.reduce((s, r) => s + r.total_calls, 0);
+  const rawTotalBooked = aiData.reduce((s, r) => s + r.appointments_booked, 0);
+  const rawTotalRev = aiData.reduce((s, r) => s + Number(r.revenue_recovered), 0);
+  const rawAvgTicket = rawTotalBooked > 0 ? Math.round(rawTotalRev / rawTotalBooked) : 0;
+
+  const totalCalls = getVal('totalCalls', rawTotalCalls);
+  const avgTicket = getVal('avgTicket', rawAvgTicket);
+  const bookingRate = getVal('bookingRate', ((rawTotalBooked / rawTotalCalls) * 100));
+  const totalBooked = Math.round(totalCalls * bookingRate / 100);
+  const totalRev = totalBooked * avgTicket;
   const totalAI = aiData.reduce((s, r) => s + r.ai_answered, 0);
-  const totalBooked = aiData.reduce((s, r) => s + r.appointments_booked, 0);
-  const bookingRate = ((totalBooked / totalCalls) * 100).toFixed(1);
-  const avgTicket = getAvgTicket();
-  const totalRev = avgTicketOverride ? totalBooked * avgTicket : aiData.reduce((s, r) => s + Number(r.revenue_recovered), 0);
 
   document.getElementById('kpis').innerHTML = `
-    <div class="kpi-card">
-      <div class="kpi-header">
-        <span class="kpi-label">Calls Handled</span>
-        <div class="kpi-icon purple"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
-      </div>
+    <div class="kpi-card editable-kpi" data-kpi="totalCalls" onclick="editKPI(this)">
+      <div class="kpi-header"><span class="kpi-label">Calls Handled</span><div class="kpi-icon purple"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72"/></svg></div></div>
       <div class="kpi-value">${fmt(totalCalls)}</div>
       <div class="kpi-sub">${fmt(totalAI)} answered by AI agent</div>
+      <div class="edit-hint">Click to adjust</div>
     </div>
-
-    <div class="kpi-card">
-      <div class="kpi-header">
-        <span class="kpi-label">Booking Rate</span>
-        <div class="kpi-icon teal"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
-      </div>
-      <div class="kpi-value">${bookingRate}%</div>
+    <div class="kpi-card editable-kpi" data-kpi="bookingRate" onclick="editKPI(this)">
+      <div class="kpi-header"><span class="kpi-label">Booking Rate</span><div class="kpi-icon teal"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div></div>
+      <div class="kpi-value">${bookingRate.toFixed(1)}%</div>
       <div class="kpi-sub">${fmt(totalBooked)} appointments booked</div>
+      <div class="edit-hint">Click to adjust</div>
     </div>
-
-    <div class="kpi-card editable-kpi" onclick="editAvgTicket()" id="ticket-card">
-      <div class="kpi-header">
-        <span class="kpi-label">Avg Ticket Value</span>
-        <div class="kpi-icon green"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
-      </div>
-      <div class="kpi-value" id="ticket-value">$${fmt(avgTicket)}</div>
+    <div class="kpi-card editable-kpi" data-kpi="avgTicket" onclick="editKPI(this)">
+      <div class="kpi-header"><span class="kpi-label">Avg Ticket Value</span><div class="kpi-icon green"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div></div>
+      <div class="kpi-value">$${fmt(avgTicket)}</div>
       <div class="kpi-sub">Per booked appointment</div>
       <div class="edit-hint">Click to adjust</div>
     </div>
-
-    <div class="kpi-card">
-      <div class="kpi-header">
-        <span class="kpi-label">Revenue Attributed</span>
-        <div class="kpi-icon purple"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg></div>
-      </div>
-      <div class="kpi-value" id="total-rev">$${fmt(totalRev)}</div>
+    <div class="kpi-card editable-kpi" data-kpi="totalRevenue" onclick="editKPI(this)">
+      <div class="kpi-header"><span class="kpi-label">Revenue Attributed</span><div class="kpi-icon purple"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg></div></div>
+      <div class="kpi-value">$${fmt(totalRev)}</div>
       <div class="kpi-sub">Based on avg ticket &times; bookings</div>
+      <div class="edit-hint">Click to adjust</div>
     </div>
-
-    <div class="kpi-card">
-      <div class="kpi-header">
-        <span class="kpi-label">System Cost</span>
-        <div class="kpi-icon amber"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div>
-      </div>
-      <div class="kpi-value">$70<span style="font-size:14px;font-weight:500;color:var(--gray-500)">/mo</span></div>
+    <div class="kpi-card editable-kpi" data-kpi="systemCost" onclick="editKPI(this)">
+      <div class="kpi-header"><span class="kpi-label">System Cost</span><div class="kpi-icon amber"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div></div>
+      <div class="kpi-value">$${fmt(getVal('systemCost', 70))}<span style="font-size:14px;font-weight:500;color:var(--gray-500)">/mo</span></div>
       <div class="kpi-sub">VAPI + n8n + Airtable</div>
-    </div>
-  `;
-}
-
-function editAvgTicket() {
-  const valEl = document.getElementById('ticket-value');
-  const current = getAvgTicket();
-  valEl.innerHTML = `<input class="kpi-input" type="number" value="${current}" id="ticket-input" onkeydown="if(event.key==='Enter')applyTicket()" autofocus>`;
-  document.getElementById('ticket-input').focus();
-  document.getElementById('ticket-input').select();
-  document.getElementById('ticket-input').addEventListener('blur', applyTicket);
-}
-
-function applyTicket() {
-  const input = document.getElementById('ticket-input');
-  if (!input) return;
-  const val = parseInt(input.value);
-  if (val && val > 0) {
-    avgTicketOverride = val;
-    renderKPIs();
-    renderTable();
-  }
+      <div class="edit-hint">Click to adjust</div>
+    </div>`;
 }
 
 function renderTable() {
   const tbody = document.getElementById('table-body');
-  const ticket = getAvgTicket();
-
-  let html = aiData.map(r => {
-    const booked = r.appointments_booked;
-    const rev = avgTicketOverride ? booked * ticket : Number(r.revenue_recovered);
+  const avgTicket = getVal('avgTicket', (() => {
+    const tr = aiData.reduce((s, r) => s + Number(r.revenue_recovered), 0);
+    const tb = aiData.reduce((s, r) => s + r.appointments_booked, 0);
+    return tb > 0 ? Math.round(tr / tb) : 0;
+  })());
+  tbody.innerHTML = aiData.map(r => {
+    const rev = overrides.avgTicket ? r.appointments_booked * avgTicket : Number(r.revenue_recovered);
     const missClass = parseFloat(r.miss_rate) <= 1.5 ? 'badge-green' : parseFloat(r.miss_rate) <= 2.5 ? 'badge-amber' : 'badge-red';
-    const highlight = r.month_order === 8 ? ' style="background:#F0FDF4"' : '';
-    return `<tr${highlight}>
-      <td class="font-semibold">${r.month}</td>
-      <td>${fmt(r.total_calls)}</td>
-      <td>${fmt(r.ai_answered)}</td>
-      <td>${r.missed_calls > 0 ? '<span style="color:#EF4444;font-weight:600">' + r.missed_calls + '</span>' : '0'}</td>
-      <td><span class="badge ${missClass}">${r.miss_rate}</span></td>
-      <td>${fmt(booked)}</td>
-      <td class="font-semibold">$${fmt(ticket)}</td>
-      <td><span class="money-green">$${fmt(rev)}</span></td>
-      <td>${r.avg_response_time}</td>
-    </tr>`;
+    const hl = r.month_order === 8 ? ' style="background:#F0FDF4"' : '';
+    return `<tr${hl}><td class="font-semibold">${r.month}</td><td>${fmt(r.total_calls)}</td><td>${fmt(r.ai_answered)}</td><td>${r.missed_calls > 0 ? '<span style="color:#EF4444;font-weight:600">' + r.missed_calls + '</span>' : '0'}</td><td><span class="badge ${missClass}">${r.miss_rate}</span></td><td>${fmt(r.appointments_booked)}</td><td class="font-semibold">$${fmt(avgTicket)}</td><td><span class="money-green">$${fmt(rev)}</span></td><td>${r.avg_response_time}</td></tr>`;
   }).join('');
-
-  tbody.innerHTML = html;
 }
 
-async function init() {
-  aiData = await fetchData();
-
-  renderSystemInfo();
-  renderKPIs();
-
-  // Revenue chart (chronological)
-  const chartData = [...aiData].reverse();
-  new ApexCharts(document.querySelector('#chart-revenue'), {
+function initCharts() {
+  const cd = [...aiData].reverse();
+  revenueChart = new ApexCharts(document.querySelector('#chart-revenue'), {
     chart: { type: 'bar', height: 280, toolbar: { show: false }, fontFamily: 'Inter' },
-    series: [{ name: 'Revenue', data: chartData.map(r => Number(r.revenue_recovered)) }],
-    colors: chartData.map(r => r.month_order === 8 ? '#887CFD' : '#5347CE'),
+    series: [{ name: 'Revenue', data: cd.map(r => Number(r.revenue_recovered)) }],
+    colors: cd.map(r => r.month_order === 8 ? '#887CFD' : '#5347CE'),
     plotOptions: { bar: { borderRadius: 5, columnWidth: '50%', distributed: true } },
-    dataLabels: { enabled: false },
-    legend: { show: false },
+    dataLabels: { enabled: false }, legend: { show: false },
     grid: { borderColor: '#F3F4F6', strokeDashArray: 3 },
     yaxis: { labels: { formatter: v => '$' + (v/1000).toFixed(0) + 'K', style: { colors: '#9CA3AF', fontSize: '11px', fontFamily: 'Inter' } } },
-    xaxis: { categories: chartData.map(r => r.month.split(' ')[0].substring(0,3)), labels: { style: { colors: '#9CA3AF', fontSize: '11px', fontFamily: 'Inter' } }, axisBorder: { show: false }, axisTicks: { show: false } },
+    xaxis: { categories: cd.map(r => r.month.split(' ')[0].substring(0,3)), labels: { style: { colors: '#9CA3AF', fontSize: '11px', fontFamily: 'Inter' } }, axisBorder: { show: false }, axisTicks: { show: false } },
     tooltip: { y: { formatter: v => '$' + fmt(v) }, theme: 'light' }
-  }).render();
+  }); revenueChart.render();
 
-  // Call volume chart
-  new ApexCharts(document.querySelector('#chart-calls'), {
+  callsChart = new ApexCharts(document.querySelector('#chart-calls'), {
     chart: { type: 'area', height: 280, toolbar: { show: false }, fontFamily: 'Inter' },
-    series: [
-      { name: 'Total Calls', data: chartData.map(r => r.total_calls) },
-      { name: 'AI Answered', data: chartData.map(r => r.ai_answered) }
-    ],
+    series: [{ name: 'Total Calls', data: cd.map(r => r.total_calls) }, { name: 'AI Answered', data: cd.map(r => r.ai_answered) }],
     colors: ['#4896FE', '#16C8C7'],
     fill: { type: 'gradient', gradient: { shadeIntensity: 1, opacityFrom: 0.35, opacityTo: 0.02, stops: [0, 90, 100] } },
     stroke: { width: 2.5, curve: 'smooth' },
-    xaxis: { categories: chartData.map(r => r.month.split(' ')[0].substring(0,3)), labels: { style: { colors: '#9CA3AF', fontSize: '11px', fontFamily: 'Inter' } }, axisBorder: { show: false }, axisTicks: { show: false } },
+    xaxis: { categories: cd.map(r => r.month.split(' ')[0].substring(0,3)), labels: { style: { colors: '#9CA3AF', fontSize: '11px', fontFamily: 'Inter' } }, axisBorder: { show: false }, axisTicks: { show: false } },
     yaxis: { labels: { style: { colors: '#9CA3AF', fontSize: '11px', fontFamily: 'Inter' } } },
-    grid: { borderColor: '#F3F4F6', strokeDashArray: 3 },
-    dataLabels: { enabled: false },
+    grid: { borderColor: '#F3F4F6', strokeDashArray: 3 }, dataLabels: { enabled: false },
     legend: { position: 'top', horizontalAlign: 'right', fontSize: '12px', fontWeight: 500, fontFamily: 'Inter', markers: { radius: 3 } },
     tooltip: { y: { formatter: v => fmt(v) + ' calls' }, theme: 'light' }
-  }).render();
+  }); callsChart.render();
+}
 
-  renderTable();
+function updateCharts() {
+  if (!revenueChart) return;
+  const cd = [...aiData].reverse();
+  if (overrides.avgTicket) {
+    revenueChart.updateSeries([{ name: 'Revenue', data: cd.map(r => r.appointments_booked * overrides.avgTicket) }]);
+  }
+}
+
+function getOutcomeBadge(outcome) {
+  const cls = outcome === 'Appointment Booked' ? 'badge-green' : outcome === 'Missed' || outcome === 'Hung Up' ? 'badge-red' : outcome === 'Transferred to Tech' ? 'badge-blue' : outcome === 'Callback Requested' ? 'badge-amber' : 'badge-gray';
+  return `<span class="badge ${cls}">${outcome}</span>`;
+}
+
+function renderCallLog() {
+  const filtered = activeCallFilter === 'All' ? allCalls : allCalls.filter(c => c.outcome === activeCallFilter);
+  document.getElementById('calllog-count').textContent = `${filtered.length} calls`;
+  const outcomes = ['All', ...new Set(allCalls.map(c => c.outcome))];
+  document.getElementById('calllog-filters').innerHTML = outcomes.map(o =>
+    `<button class="filter-pill${o === activeCallFilter ? ' active' : ''}" onclick="activeCallFilter='${o}';renderCallLog()">${o}${o !== 'All' ? ' (' + allCalls.filter(c => c.outcome === o).length + ')' : ''}</button>`
+  ).join('');
+  document.getElementById('calllog-body').innerHTML = filtered.map(c => {
+    const ah = c.after_hours ? '<span class="badge badge-amber">Yes</span>' : '<span class="text-muted">No</span>';
+    const ai = c.ai_handled ? '<span class="badge badge-green">Yes</span>' : '<span class="badge badge-gray">No</span>';
+    const rev = Number(c.revenue) > 0 ? `<span class="money-green">$${fmt(c.revenue)}</span>` : '<span class="text-muted">-</span>';
+    return `<tr><td class="font-semibold">${c.call_date}</td><td>${c.call_time}</td><td>${c.caller_name}</td><td style="font-size:12px;color:var(--gray-500)">${c.phone || '-'}</td><td>${c.call_type}</td><td>${ah}</td><td>${ai}</td><td>${getOutcomeBadge(c.outcome)}</td><td>${rev}</td><td>${c.duration || '-'}</td></tr>`;
+  }).join('');
+}
+
+function parseNotes(notes) {
+  if (!notes) return {};
+  const result = {};
+  notes.split(' | ').forEach(p => { const [k, v] = p.split(': '); if (k && v) result[k.trim()] = v.trim(); });
+  return result;
+}
+
+function renderAppointments() {
+  const booked = allCalls.filter(c => c.outcome === 'Appointment Booked');
+  const statuses = ['All', 'Confirmed', 'Completed', 'Pending', 'No-Show'];
+  const filtered = activeApptFilter === 'All' ? booked : booked.filter(c => parseNotes(c.notes).Status === activeApptFilter);
+  document.getElementById('appts-count').textContent = `${filtered.length} appointments`;
+  document.getElementById('appts-filters').innerHTML = statuses.map(s => {
+    const cnt = s === 'All' ? booked.length : booked.filter(c => parseNotes(c.notes).Status === s).length;
+    return `<button class="filter-pill${s === activeApptFilter ? ' active' : ''}" onclick="activeApptFilter='${s}';renderAppointments()">${s} (${cnt})</button>`;
+  }).join('');
+  document.getElementById('appts-grid').innerHTML = filtered.map(c => {
+    const info = parseNotes(c.notes);
+    const status = info.Status || 'Pending';
+    const tech = info.Tech || 'Unassigned';
+    const service = info.Service || c.call_type;
+    const sc = status === 'Confirmed' ? 'badge-green' : status === 'Completed' ? 'badge-blue' : status === 'Pending' ? 'badge-amber' : 'badge-red';
+    const d = new Date(c.call_date + 'T12:00:00');
+    const ds = d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+    return `<div class="appt-card"><div class="appt-datetime"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>${ds} &middot; ${c.call_time}</div><div class="appt-customer">${c.caller_name}</div><div class="appt-service">${service}</div><div class="appt-divider"></div><div class="appt-tech">Tech: ${tech}</div><div class="appt-footer"><span class="badge ${sc}">${status}</span><span class="appt-revenue">$${fmt(c.revenue)}</span></div></div>`;
+  }).join('');
+}
+
+async function init() {
+  [aiData, allCalls] = await Promise.all([
+    fetchJSON('monthly_performance?order=month_order.desc'),
+    fetchJSON('hvac_inbound_calls?order=call_date.desc,call_time.desc')
+  ]);
+  document.getElementById('badge-calls').textContent = fmt(allCalls.length);
+  document.getElementById('badge-appts').textContent = fmt(allCalls.filter(c => c.outcome === 'Appointment Booked').length);
+  renderSystemInfo(); renderKPIs(); initCharts(); renderTable();
+  const hash = location.hash.slice(1);
+  if (hash && hash !== 'dashboard') switchView(hash);
 }
 
 init();

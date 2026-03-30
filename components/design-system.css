@@ -628,6 +628,347 @@ body {
   color: var(--gray-500);
 }
 
+/* ── Editable KPI System ── */
+.editable-kpi { cursor: pointer; position: relative; }
+.editable-kpi:hover { background: var(--gray-50); }
+.editable-kpi .edit-hint {
+  display: none;
+  font-size: 10px;
+  color: var(--purple-500);
+  margin-top: 2px;
+}
+.editable-kpi:hover .edit-hint { display: block; }
+.kpi-input {
+  font-family: var(--font);
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--gray-900);
+  border: 2px solid var(--purple-400);
+  border-radius: 8px;
+  padding: 2px 8px;
+  width: 140px;
+  outline: none;
+  background: var(--purple-50);
+}
+
+/* ── View Switching ── */
+.view { display: none; }
+.view.active { display: block; }
+
+.view-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.view-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--gray-900);
+}
+
+.view-count {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--gray-500);
+  margin-left: 8px;
+}
+
+/* ── Filter Pills ── */
+.filter-pills {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.filter-pill {
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  border: 1px solid var(--gray-200);
+  background: #fff;
+  color: var(--gray-600);
+  transition: all 0.15s;
+  font-family: var(--font);
+}
+
+.filter-pill:hover {
+  border-color: var(--gray-300);
+  background: var(--gray-50);
+}
+
+.filter-pill.active {
+  background: var(--purple-100);
+  color: var(--purple-600);
+  border-color: var(--purple-400);
+}
+
+/* ── Appointment Cards (Cal.com style) ── */
+.appt-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.appt-card {
+  background: #fff;
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius-md);
+  padding: 20px;
+  box-shadow: var(--shadow-card);
+  transition: box-shadow 0.2s;
+}
+
+.appt-card:hover {
+  box-shadow: var(--shadow-hover);
+}
+
+.appt-card .appt-datetime {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--gray-500);
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.appt-card .appt-datetime svg {
+  width: 14px;
+  height: 14px;
+}
+
+.appt-card .appt-customer {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--gray-900);
+  margin-bottom: 4px;
+}
+
+.appt-card .appt-service {
+  font-size: 13px;
+  color: var(--gray-600);
+  margin-bottom: 12px;
+}
+
+.appt-card .appt-divider {
+  border-top: 1px solid var(--gray-100);
+  margin: 12px 0;
+}
+
+.appt-card .appt-tech {
+  font-size: 12px;
+  color: var(--gray-500);
+  margin-bottom: 8px;
+}
+
+.appt-card .appt-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.appt-card .appt-revenue {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--green-500);
+}
+
+/* ── Schedule Cards (V8) ── */
+.schedule-group {
+  margin-bottom: 24px;
+}
+
+.schedule-group-title {
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--gray-500);
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--gray-200);
+}
+
+.schedule-cards {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+.schedule-card {
+  background: #fff;
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius-md);
+  padding: 16px;
+  box-shadow: var(--shadow-card);
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.schedule-card .sc-time {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--purple-600);
+  white-space: nowrap;
+  min-width: 70px;
+}
+
+.schedule-card .sc-details {
+  flex: 1;
+}
+
+.schedule-card .sc-customer {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--gray-900);
+  margin-bottom: 2px;
+}
+
+.schedule-card .sc-address {
+  font-size: 12px;
+  color: var(--gray-500);
+  margin-bottom: 6px;
+}
+
+.schedule-card .sc-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.schedule-card .sc-tech {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--gray-600);
+}
+
+/* ── Technician Profile Cards (V8) ── */
+.tech-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.tech-profile {
+  background: #fff;
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius-md);
+  padding: 24px 20px;
+  box-shadow: var(--shadow-card);
+  text-align: center;
+}
+
+.tech-profile .tp-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 16px;
+  color: #fff;
+  margin: 0 auto 12px;
+}
+
+.tech-profile .tp-name {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--gray-900);
+  margin-bottom: 4px;
+}
+
+.tech-profile .tp-specs {
+  font-size: 11px;
+  color: var(--gray-500);
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+
+.tech-profile .tp-stats {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--gray-100);
+}
+
+.tech-profile .tp-stat {
+  text-align: center;
+}
+
+.tech-profile .tp-stat-val {
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--gray-900);
+}
+
+.tech-profile .tp-stat-label {
+  font-size: 10px;
+  color: var(--gray-500);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.tp-util-bar {
+  width: 100%;
+  height: 6px;
+  background: var(--gray-100);
+  border-radius: 3px;
+  overflow: hidden;
+  margin-top: 8px;
+}
+
+.tp-util-fill {
+  height: 100%;
+  border-radius: 3px;
+  transition: width 0.6s ease;
+}
+
+/* ── Lead Cards (V7) ── */
+.lead-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+/* ── Placeholder Views ── */
+.placeholder-view {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 20px;
+  text-align: center;
+}
+
+.placeholder-view svg {
+  width: 48px;
+  height: 48px;
+  color: var(--gray-300);
+  margin-bottom: 16px;
+}
+
+.placeholder-view .pv-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--gray-600);
+  margin-bottom: 6px;
+}
+
+.placeholder-view .pv-desc {
+  font-size: 13px;
+  color: var(--gray-400);
+}
+
 /* ── Utilities ── */
 .flex { display: flex; }
 .items-center { align-items: center; }

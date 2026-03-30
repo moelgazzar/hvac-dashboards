@@ -18,30 +18,30 @@
 
   <div class="sidebar-section">
     <div class="sidebar-section-label">Overview</div>
-    <a class="sidebar-item active">
+    <a class="sidebar-item active" data-view="dashboard" onclick="switchView('dashboard')">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
       Dashboard
     </a>
-    <a class="sidebar-item">
+    <a class="sidebar-item" data-view="dispatch" onclick="switchView('dispatch')">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
       Dispatch
     </a>
-    <a class="sidebar-item">
+    <a class="sidebar-item" data-view="schedule" onclick="switchView('schedule')">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
       Schedule
-      <span class="sidebar-badge">20</span>
+      <span class="sidebar-badge" id="badge-schedule">--</span>
     </a>
-    <a class="sidebar-item">
+    <a class="sidebar-item" data-view="routes" onclick="switchView('routes')">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
       Routes
     </a>
-    <a class="sidebar-item">
+    <a class="sidebar-item" data-view="technicians" onclick="switchView('technicians')">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
       Technicians
-      <span class="sidebar-badge">8</span>
+      <span class="sidebar-badge" id="badge-techs">--</span>
     </a>
-    <a class="sidebar-item">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+    <a class="sidebar-item" data-view="settings" onclick="switchView('settings')">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09"/></svg>
       Settings
     </a>
   </div>
@@ -61,7 +61,7 @@
 <div class="main">
   <div class="topbar">
     <div class="topbar-left">
-      <h1>
+      <h1 id="page-title">
         <span style="display:inline-flex;align-items:center;gap:10px;">
           Dispatch Board
           <span class="live-dot"></span>
@@ -79,171 +79,79 @@
   </div>
 
   <div class="content">
-    <!-- KPI Cards -->
-    <div class="kpi-grid cols-5" id="kpis"></div>
 
-    <!-- Charts Row: Utilization + Before/After -->
-    <div class="chart-grid cols-2">
+    <!-- ====== DASHBOARD VIEW ====== -->
+    <div id="view-dashboard" class="view active">
+      <div class="kpi-grid cols-5" id="kpis"></div>
+
+      <div class="chart-grid cols-2">
+        <div class="chart-card">
+          <div class="chart-header"><div><div class="chart-title">Technician Utilization</div><div class="chart-meta mt-4">Active techs today</div></div></div>
+          <div id="chart-utilization" style="height:320px"></div>
+        </div>
+        <div class="chart-card">
+          <div class="chart-header"><div><div class="chart-title">Before vs After OpenClaw</div><div class="chart-meta mt-4">Efficiency improvements</div></div></div>
+          <div class="compare-grid" id="compare-cards"></div>
+        </div>
+      </div>
+
       <div class="chart-card">
-        <div class="chart-header">
-          <div>
-            <div class="chart-title">Technician Utilization</div>
-            <div class="chart-meta mt-4">Active techs today</div>
-          </div>
+        <div class="chart-header"><div class="chart-title">Technician Status Board</div><div class="text-xs text-muted">Updated 1 min ago</div></div>
+        <div class="mt-16">
+          <table class="data-table">
+            <thead><tr><th>Technician</th><th>Status</th><th>Location</th><th>Specialties</th><th>Level</th><th>Jobs Today</th><th>Avg Drive</th><th>Utilization</th><th>Next Appointment</th></tr></thead>
+            <tbody id="tech-table"></tbody>
+          </table>
         </div>
-        <div id="chart-utilization" style="height:320px"></div>
       </div>
 
       <div class="chart-card">
-        <div class="chart-header">
-          <div>
-            <div class="chart-title">Before vs After OpenClaw</div>
-            <div class="chart-meta mt-4">Efficiency improvements</div>
-          </div>
+        <div class="chart-header"><div><div class="chart-title">Today's Schedule</div><div class="text-xs text-muted mt-4">Sorted by time, optimized routes</div></div><div class="text-xs text-muted">Updated 1 min ago</div></div>
+        <div class="mt-16">
+          <table class="data-table">
+            <thead><tr><th>Time</th><th>Customer</th><th>Address</th><th>Service</th><th>Technician</th><th>Route #</th><th>Duration</th><th>Revenue</th><th>Status</th></tr></thead>
+            <tbody id="schedule-table"></tbody>
+          </table>
         </div>
-        <div class="compare-grid" id="compare-cards"></div>
       </div>
+
+      <div class="savings-grid" id="savings-grid"></div>
+
+      <div class="dashboard-footer"><p>Comfort Air HVAC &middot; AI Dispatch System &middot; Powered by ServiceAI</p></div>
     </div>
 
-    <!-- Table 1: Technician Status -->
-    <div class="chart-card">
-      <div class="chart-header">
-        <div class="chart-title">Technician Status Board</div>
-        <div class="text-xs text-muted">Updated 1 min ago</div>
-      </div>
-      <div class="mt-16">
-        <table class="data-table">
-          <thead>
-            <tr>
-              <th>Technician</th>
-              <th>Status</th>
-              <th>Location</th>
-              <th>Specialties</th>
-              <th>Level</th>
-              <th>Jobs Today</th>
-              <th>Avg Drive</th>
-              <th>Utilization</th>
-              <th>Next Appointment</th>
-            </tr>
-          </thead>
-          <tbody id="tech-table"></tbody>
-        </table>
-      </div>
+    <!-- ====== SCHEDULE VIEW ====== -->
+    <div id="view-schedule" class="view">
+      <div class="view-header"><span class="view-title">Today's Schedule</span><span class="view-count" id="schedule-count"></span></div>
+      <div id="schedule-cards-container"></div>
     </div>
 
-    <!-- Table 2: Today's Schedule -->
-    <div class="chart-card">
-      <div class="chart-header">
-        <div>
-          <div class="chart-title">Today's Schedule</div>
-          <div class="text-xs text-muted mt-4">Sorted by time, optimized routes</div>
-        </div>
-        <div class="text-xs text-muted">Updated 1 min ago</div>
-      </div>
-      <div class="mt-16">
-        <table class="data-table">
-          <thead>
-            <tr>
-              <th>Time</th>
-              <th>Customer</th>
-              <th>Address</th>
-              <th>Service</th>
-              <th>Technician</th>
-              <th>Route #</th>
-              <th>Duration</th>
-              <th>Revenue</th>
-              <th>Status</th>
-            </tr>
-          </thead>
-          <tbody id="schedule-table"></tbody>
-        </table>
-      </div>
+    <!-- ====== TECHNICIANS VIEW ====== -->
+    <div id="view-technicians" class="view">
+      <div class="view-header"><span class="view-title">Technician Roster</span><span class="view-count" id="tech-count"></span></div>
+      <div class="tech-grid" id="tech-profiles"></div>
     </div>
 
-    <!-- Savings Cards -->
-    <div class="savings-grid" id="savings-grid"></div>
+    <!-- ====== PLACEHOLDER VIEWS ====== -->
+    <div id="view-dispatch" class="view"><div class="placeholder-view"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg><div class="pv-title">Live Dispatch Map</div><div class="pv-desc">Real-time GPS tracking coming soon</div></div></div>
+    <div id="view-routes" class="view"><div class="placeholder-view"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg><div class="pv-title">Route Optimization</div><div class="pv-desc">AI route planning coming soon</div></div></div>
+    <div id="view-settings" class="view"><div class="placeholder-view"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/></svg><div class="pv-title">Settings</div><div class="pv-desc">Dispatch configuration coming soon</div></div></div>
 
-    <div class="dashboard-footer">
-      <p>Comfort Air HVAC &middot; AI Dispatch System &middot; Powered by ServiceAI</p>
-    </div>
   </div>
 </div>
 
 <style>
-  .live-dot {
-    width: 10px;
-    height: 10px;
-    background: var(--green-500);
-    border-radius: 50%;
-    display: inline-block;
-    animation: pulse-green 2s ease-in-out infinite;
-  }
-  @keyframes pulse-green {
-    0%, 100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.5); }
-    50% { box-shadow: 0 0 0 8px rgba(34, 197, 94, 0); }
-  }
-  .live-text {
-    font-size: 12px;
-    font-weight: 600;
-    color: var(--green-500);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-  }
-
-  .editable-kpi { cursor: pointer; position: relative; }
-  .editable-kpi:hover { background: var(--gray-50); }
-  .editable-kpi .edit-hint { display: none; font-size: 10px; color: var(--purple-500); margin-top: 2px; }
-  .editable-kpi:hover .edit-hint { display: block; }
-  .kpi-input { font-family: var(--font); font-size: 28px; font-weight: 800; color: var(--gray-900); border: 2px solid var(--purple-400); border-radius: 8px; padding: 2px 8px; width: 120px; outline: none; background: var(--purple-50); }
-
-  .compare-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 16px;
-    padding: 12px 0;
-  }
-  .compare-card {
-    border: 1px solid var(--gray-200);
-    border-radius: var(--radius-md);
-    padding: 16px;
-    text-align: center;
-  }
-  .compare-card .cc-label {
-    font-size: 12px;
-    font-weight: 600;
-    color: var(--gray-500);
-    margin-bottom: 12px;
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
-  }
-  .compare-row {
-    display: grid;
-    grid-template-columns: 1fr auto 1fr;
-    gap: 8px;
-    align-items: center;
-    margin-bottom: 4px;
-  }
-  .compare-before {
-    font-size: 20px;
-    font-weight: 800;
-    color: var(--red-500);
-    text-align: right;
-  }
-  .compare-arrow {
-    font-size: 16px;
-    color: var(--green-500);
-  }
-  .compare-after {
-    font-size: 20px;
-    font-weight: 800;
-    color: var(--green-500);
-    text-align: left;
-  }
-  .compare-sub {
-    font-size: 11px;
-    color: var(--gray-400);
-    margin-top: 2px;
-  }
+  .live-dot { width: 10px; height: 10px; background: var(--green-500); border-radius: 50%; display: inline-block; animation: pulse-green 2s ease-in-out infinite; }
+  @keyframes pulse-green { 0%, 100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.5); } 50% { box-shadow: 0 0 0 8px rgba(34, 197, 94, 0); } }
+  .live-text { font-size: 12px; font-weight: 600; color: var(--green-500); text-transform: uppercase; letter-spacing: 0.05em; }
+  .compare-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; padding: 12px 0; }
+  .compare-card { border: 1px solid var(--gray-200); border-radius: var(--radius-md); padding: 16px; text-align: center; }
+  .compare-card .cc-label { font-size: 12px; font-weight: 600; color: var(--gray-500); margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.04em; }
+  .compare-row { display: grid; grid-template-columns: 1fr auto 1fr; gap: 8px; align-items: center; margin-bottom: 4px; }
+  .compare-before { font-size: 20px; font-weight: 800; color: var(--red-500); text-align: right; }
+  .compare-arrow { font-size: 16px; color: var(--green-500); }
+  .compare-after { font-size: 20px; font-weight: 800; color: var(--green-500); text-align: left; }
+  .compare-sub { font-size: 11px; color: var(--gray-400); margin-top: 2px; }
 </style>
 
 <script>
@@ -252,262 +160,248 @@ const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZ
 
 let techData = [];
 let scheduleData = [];
-let avgTicketOverride = null;
+let overrides = {};
+let viewLoaded = { dashboard: true };
 
-async function fetchTechs() {
-  const res = await fetch(`${SUPABASE_URL}/rest/v1/technician_dispatch?order=utilization.desc`, {
-    headers: { 'apikey': SUPABASE_KEY, 'Authorization': `Bearer ${SUPABASE_KEY}` }
-  });
+async function fetchJSON(path) {
+  const res = await fetch(`${SUPABASE_URL}/rest/v1/${path}`, { headers: { 'apikey': SUPABASE_KEY, 'Authorization': `Bearer ${SUPABASE_KEY}` } });
   return res.json();
 }
-
-async function fetchSchedule() {
-  const res = await fetch(`${SUPABASE_URL}/rest/v1/daily_schedule?order=time_slot`, {
-    headers: { 'apikey': SUPABASE_KEY, 'Authorization': `Bearer ${SUPABASE_KEY}` }
-  });
-  return res.json();
-}
-
 function fmt(n) { return Number(n).toLocaleString(); }
+function getVal(key, fallback) { return overrides[key] !== undefined ? overrides[key] : fallback; }
+
+function switchView(viewId) {
+  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+  const view = document.getElementById('view-' + viewId);
+  if (view) view.classList.add('active');
+  document.querySelectorAll('.sidebar-item').forEach(i => i.classList.remove('active'));
+  const si = document.querySelector(`[data-view="${viewId}"]`);
+  if (si) si.classList.add('active');
+
+  // Update title (remove live dot for non-dashboard views)
+  const titles = { dashboard: null, dispatch: 'Dispatch', schedule: "Today's Schedule", routes: 'Routes', technicians: 'Technician Roster', settings: 'Settings' };
+  if (viewId === 'dashboard') {
+    document.getElementById('page-title').innerHTML = '<span style="display:inline-flex;align-items:center;gap:10px;">Dispatch Board<span class="live-dot"></span><span class="live-text">Live</span></span>';
+  } else {
+    document.getElementById('page-title').textContent = titles[viewId] || 'Dashboard';
+  }
+  history.replaceState(null, '', '#' + viewId);
+  if (!viewLoaded[viewId]) {
+    if (viewId === 'schedule') renderScheduleCards();
+    if (viewId === 'technicians') renderTechProfiles();
+    viewLoaded[viewId] = true;
+  }
+}
+window.addEventListener('hashchange', () => { switchView(location.hash.slice(1) || 'dashboard'); });
+
+function editKPI(card) {
+  const kpiName = card.dataset.kpi;
+  const valEl = card.querySelector('.kpi-value');
+  const currentText = valEl.textContent.replace(/[$,%\s]/g, '').replace(/,/g, '').replace(/min/, '');
+  const current = parseFloat(currentText) || 0;
+  valEl.innerHTML = `<input class="kpi-input" type="number" value="${Math.round(current)}" id="kpi-input-active" autofocus>`;
+  const input = document.getElementById('kpi-input-active');
+  input.focus(); input.select();
+  function apply() {
+    const val = parseFloat(input.value);
+    if (val >= 0) { overrides[kpiName] = val; recalcAll(); }
+    input.removeEventListener('blur', apply);
+  }
+  input.addEventListener('keydown', e => { if (e.key === 'Enter') apply(); });
+  input.addEventListener('blur', apply);
+}
 
 function timeToMinutes(t) {
   const match = t.match(/(\d+):(\d+)\s*(AM|PM)/i);
   if (!match) return 0;
-  let h = parseInt(match[1]);
-  const m = parseInt(match[2]);
-  const period = match[3].toUpperCase();
-  if (period === 'PM' && h !== 12) h += 12;
-  if (period === 'AM' && h === 12) h = 0;
+  let h = parseInt(match[1]); const m = parseInt(match[2]); const p = match[3].toUpperCase();
+  if (p === 'PM' && h !== 12) h += 12;
+  if (p === 'AM' && h === 12) h = 0;
   return h * 60 + m;
 }
 
-function getAvgTicket() {
-  if (avgTicketOverride !== null) return avgTicketOverride;
-  const revenueJobs = scheduleData.filter(r => Number(r.revenue) > 0);
-  const totalRev = revenueJobs.reduce((s, r) => s + Number(r.revenue), 0);
-  return revenueJobs.length > 0 ? Math.round(totalRev / revenueJobs.length) : 0;
+function recalcAll() {
+  renderKPIs(); renderScheduleTable();
+  if (viewLoaded.schedule) renderScheduleCards();
+  if (viewLoaded.technicians) renderTechProfiles();
 }
 
 function renderKPIs() {
   const activeTechs = techData.filter(t => t.status !== 'Off Duty');
   const totalJobs = scheduleData.length;
-  const totalRevenue = avgTicketOverride
-    ? scheduleData.filter(r => Number(r.revenue) > 0).length * avgTicketOverride
+  const avgTicket = getVal('avgTicket', (() => {
+    const revJobs = scheduleData.filter(r => Number(r.revenue) > 0);
+    const tr = revJobs.reduce((s, r) => s + Number(r.revenue), 0);
+    return revJobs.length > 0 ? Math.round(tr / revJobs.length) : 0;
+  })());
+  const totalRevenue = overrides.avgTicket
+    ? scheduleData.filter(r => Number(r.revenue) > 0).length * overrides.avgTicket
     : scheduleData.reduce((s, r) => s + Number(r.revenue), 0);
-  const avgDrive = activeTechs.length > 0
-    ? Math.round(activeTechs.reduce((s, t) => s + parseInt(t.avg_drive_time), 0) / activeTechs.length)
-    : 0;
+  const avgDrive = getVal('avgDrive', activeTechs.length > 0 ? Math.round(activeTechs.reduce((s, t) => s + parseInt(t.avg_drive_time), 0) / activeTechs.length) : 0);
   const totalJobsToday = activeTechs.reduce((s, t) => s + t.jobs_today, 0);
-  const jobsPerTech = activeTechs.length > 0 ? (totalJobsToday / activeTechs.length).toFixed(1) : 0;
-  const conflicts = 0;
+  const jobsPerTech = getVal('jobsPerTech', activeTechs.length > 0 ? (totalJobsToday / activeTechs.length).toFixed(1) : 0);
 
   document.getElementById('kpis').innerHTML = `
-    <div class="kpi-card">
-      <div class="kpi-header">
-        <span class="kpi-label">Today's Jobs</span>
-        <div class="kpi-icon purple"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></div>
-      </div>
-      <div class="kpi-value">${totalJobs}</div>
+    <div class="kpi-card editable-kpi" data-kpi="todaysJobs" onclick="editKPI(this)">
+      <div class="kpi-header"><span class="kpi-label">Today's Jobs</span><div class="kpi-icon purple"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></div></div>
+      <div class="kpi-value">${getVal('todaysJobs', totalJobs)}</div>
       <div class="kpi-sub">${activeTechs.length} techs active</div>
+      <div class="edit-hint">Click to adjust</div>
     </div>
-
-    <div class="kpi-card editable-kpi" onclick="editAvgTicket()" id="ticket-card">
-      <div class="kpi-header">
-        <span class="kpi-label">Today's Revenue</span>
-        <div class="kpi-icon green"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
-      </div>
-      <div class="kpi-value" id="ticket-value">$${fmt(totalRevenue)}</div>
-      <div class="kpi-sub">Avg ticket $${fmt(getAvgTicket())}</div>
+    <div class="kpi-card editable-kpi" data-kpi="avgTicket" onclick="editKPI(this)">
+      <div class="kpi-header"><span class="kpi-label">Today's Revenue</span><div class="kpi-icon green"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div></div>
+      <div class="kpi-value">$${fmt(totalRevenue)}</div>
+      <div class="kpi-sub">Avg ticket $${fmt(avgTicket)}</div>
       <div class="edit-hint">Click to adjust avg ticket</div>
     </div>
-
-    <div class="kpi-card">
-      <div class="kpi-header">
-        <span class="kpi-label">Avg Drive Time</span>
-        <div class="kpi-icon teal"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
-      </div>
+    <div class="kpi-card editable-kpi" data-kpi="avgDrive" onclick="editKPI(this)">
+      <div class="kpi-header"><span class="kpi-label">Avg Drive Time</span><div class="kpi-icon teal"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div></div>
       <div class="kpi-value">${avgDrive} min</div>
       <span class="kpi-change up">-27 min</span>
       <div class="kpi-sub">Down from 45 min avg</div>
+      <div class="edit-hint">Click to adjust</div>
     </div>
-
-    <div class="kpi-card">
-      <div class="kpi-header">
-        <span class="kpi-label">Jobs/Tech/Day</span>
-        <div class="kpi-icon blue"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg></div>
-      </div>
+    <div class="kpi-card editable-kpi" data-kpi="jobsPerTech" onclick="editKPI(this)">
+      <div class="kpi-header"><span class="kpi-label">Jobs/Tech/Day</span><div class="kpi-icon blue"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg></div></div>
       <div class="kpi-value">${jobsPerTech}</div>
       <span class="kpi-change up">+75%</span>
       <div class="kpi-sub">Up from 4.0 avg</div>
+      <div class="edit-hint">Click to adjust</div>
     </div>
-
-    <div class="kpi-card">
-      <div class="kpi-header">
-        <span class="kpi-label">Schedule Conflicts</span>
-        <div class="kpi-icon green"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
-      </div>
-      <div class="kpi-value">${conflicts}</div>
+    <div class="kpi-card editable-kpi" data-kpi="conflicts" onclick="editKPI(this)">
+      <div class="kpi-header"><span class="kpi-label">Schedule Conflicts</span><div class="kpi-icon green"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div></div>
+      <div class="kpi-value">${getVal('conflicts', 0)}</div>
       <div class="kpi-sub">No overlaps detected</div>
-    </div>
-  `;
-}
-
-function editAvgTicket() {
-  const valEl = document.getElementById('ticket-value');
-  const current = getAvgTicket();
-  valEl.innerHTML = `<input class="kpi-input" type="number" value="${current}" id="ticket-input" onkeydown="if(event.key==='Enter')applyTicket()" autofocus>`;
-  document.getElementById('ticket-input').focus();
-  document.getElementById('ticket-input').select();
-  document.getElementById('ticket-input').addEventListener('blur', applyTicket);
-}
-
-function applyTicket() {
-  const input = document.getElementById('ticket-input');
-  if (!input) return;
-  const val = parseInt(input.value);
-  if (val && val > 0) {
-    avgTicketOverride = val;
-    renderKPIs();
-    renderScheduleTable();
-  }
+      <div class="edit-hint">Click to adjust</div>
+    </div>`;
 }
 
 function renderCompareCards() {
   document.getElementById('compare-cards').innerHTML = `
-    <div class="compare-card" style="border-color:#fecaca;background:#fffbfb;">
-      <div class="cc-label">Avg Drive Time</div>
-      <div class="compare-row">
-        <div class="compare-before">45 min</div>
-        <div class="compare-arrow">&rarr;</div>
-        <div class="compare-after">18 min</div>
-      </div>
-      <div class="compare-sub">60% reduction in drive time</div>
-    </div>
-    <div class="compare-card" style="border-color:#bbf7d0;background:#f8fef9;">
-      <div class="cc-label">Jobs Per Tech/Day</div>
-      <div class="compare-row">
-        <div class="compare-before">4</div>
-        <div class="compare-arrow">&rarr;</div>
-        <div class="compare-after">7</div>
-      </div>
-      <div class="compare-sub">75% increase in capacity</div>
-    </div>
-    <div class="compare-card" style="border-color:#fecaca;background:#fffbfb;">
-      <div class="cc-label">Scheduling Time</div>
-      <div class="compare-row">
-        <div class="compare-before">45 min</div>
-        <div class="compare-arrow">&rarr;</div>
-        <div class="compare-after">0 min</div>
-      </div>
-      <div class="compare-sub">Fully automated dispatch</div>
-    </div>
-    <div class="compare-card" style="border-color:#bbf7d0;background:#f8fef9;">
-      <div class="cc-label">Dispatcher Cost</div>
-      <div class="compare-row">
-        <div class="compare-before">$45K</div>
-        <div class="compare-arrow">&rarr;</div>
-        <div class="compare-after">$60</div>
-      </div>
-      <div class="compare-sub">$45K/yr salary vs $60/mo</div>
-    </div>
-  `;
+    <div class="compare-card" style="border-color:#fecaca;background:#fffbfb;"><div class="cc-label">Avg Drive Time</div><div class="compare-row"><div class="compare-before">45 min</div><div class="compare-arrow">&rarr;</div><div class="compare-after">18 min</div></div><div class="compare-sub">60% reduction in drive time</div></div>
+    <div class="compare-card" style="border-color:#bbf7d0;background:#f8fef9;"><div class="cc-label">Jobs Per Tech/Day</div><div class="compare-row"><div class="compare-before">4</div><div class="compare-arrow">&rarr;</div><div class="compare-after">7</div></div><div class="compare-sub">75% increase in capacity</div></div>
+    <div class="compare-card" style="border-color:#fecaca;background:#fffbfb;"><div class="cc-label">Scheduling Time</div><div class="compare-row"><div class="compare-before">45 min</div><div class="compare-arrow">&rarr;</div><div class="compare-after">0 min</div></div><div class="compare-sub">Fully automated dispatch</div></div>
+    <div class="compare-card" style="border-color:#bbf7d0;background:#f8fef9;"><div class="cc-label">Dispatcher Cost</div><div class="compare-row"><div class="compare-before">$45K</div><div class="compare-arrow">&rarr;</div><div class="compare-after">$60</div></div><div class="compare-sub">$45K/yr salary vs $60/mo</div></div>`;
 }
 
 function getTechStatusBadge(status) {
-  switch(status) {
-    case 'On Job': return '<span class="badge" style="background:#FFF7ED;color:#EA580C;">On Job</span>';
-    case 'Driving': return '<span class="badge badge-blue">Driving</span>';
-    case 'Available': return '<span class="badge badge-green">Available</span>';
-    case 'Break': return '<span class="badge badge-amber">Break</span>';
-    case 'Off Duty': return '<span class="badge badge-gray">Off Duty</span>';
-    default: return '<span class="badge badge-gray">' + status + '</span>';
-  }
+  const map = { 'On Job': 'style="background:#FFF7ED;color:#EA580C;"', 'Driving': 'class="badge badge-blue"', 'Available': 'class="badge badge-green"', 'Break': 'class="badge badge-amber"', 'Off Duty': 'class="badge badge-gray"' };
+  return `<span ${map[status] || 'class="badge badge-gray"'} ${status === 'On Job' ? 'class="badge"' : ''}>${status}</span>`;
 }
 
 function getScheduleStatusBadge(status) {
-  switch(status) {
-    case 'Completed': return '<span class="badge badge-green">Completed</span>';
-    case 'In Progress': return '<span class="badge" style="background:#FFF7ED;color:#EA580C;">In Progress</span>';
-    case 'Scheduled': return '<span class="badge badge-blue">Scheduled</span>';
-    case 'Rescheduled': return '<span class="badge badge-gray">Rescheduled</span>';
-    default: return '<span class="badge badge-gray">' + status + '</span>';
-  }
+  const map = { 'Completed': 'badge-green', 'In Progress': '', 'Scheduled': 'badge-blue', 'Rescheduled': 'badge-gray' };
+  if (status === 'In Progress') return '<span class="badge" style="background:#FFF7ED;color:#EA580C;">In Progress</span>';
+  return `<span class="badge ${map[status] || 'badge-gray'}">${status}</span>`;
 }
 
 function renderTechTable() {
-  const tbody = document.getElementById('tech-table');
-  let html = techData.map(t => {
+  document.getElementById('tech-table').innerHTML = techData.map(t => {
     const utilNum = parseInt(t.utilization);
     const utilColor = utilNum >= 90 ? 'var(--green-500)' : utilNum >= 75 ? 'var(--blue-500)' : utilNum >= 50 ? 'var(--amber-500)' : 'var(--gray-500)';
     const specs = t.specialties ? t.specialties.slice(0, 2).join(', ') : '';
     return `<tr${t.status === 'Off Duty' ? ' style="opacity:0.5"' : ''}>
-      <td class="font-semibold">${t.tech_name}</td>
-      <td>${getTechStatusBadge(t.status)}</td>
-      <td style="font-size:12px">${t.current_location}</td>
-      <td style="font-size:11px;color:var(--gray-600)">${specs}</td>
-      <td><span class="badge badge-purple">${t.certification_level}</span></td>
-      <td>${t.jobs_today}</td>
-      <td>${t.avg_drive_time}</td>
-      <td><span style="font-weight:700;color:${utilColor}">${t.utilization}</span></td>
-      <td style="font-size:12px">${t.next_appointment || '-'}</td>
-    </tr>`;
+      <td class="font-semibold">${t.tech_name}</td><td>${getTechStatusBadge(t.status)}</td><td style="font-size:12px">${t.current_location}</td><td style="font-size:11px;color:var(--gray-600)">${specs}</td><td><span class="badge badge-purple">${t.certification_level}</span></td><td>${t.jobs_today}</td><td>${t.avg_drive_time}</td><td><span style="font-weight:700;color:${utilColor}">${t.utilization}</span></td><td style="font-size:12px">${t.next_appointment || '-'}</td></tr>`;
   }).join('');
-  tbody.innerHTML = html;
 }
 
 function renderScheduleTable() {
-  const tbody = document.getElementById('schedule-table');
-  const ticket = getAvgTicket();
-
-  // Sort by time_slot (parse to minutes for correct sort)
+  const ticket = getVal('avgTicket', null);
   const sorted = [...scheduleData].sort((a, b) => timeToMinutes(a.time_slot) - timeToMinutes(b.time_slot));
-
-  let html = sorted.map(r => {
-    const rev = avgTicketOverride && Number(r.revenue) > 0 ? avgTicketOverride : Number(r.revenue);
-    return `<tr>
-      <td class="font-semibold">${r.time_slot}</td>
-      <td>${r.customer}</td>
-      <td style="font-size:12px">${r.address}</td>
-      <td>${r.service_type}</td>
-      <td class="font-semibold">${r.assigned_tech}</td>
-      <td style="text-align:center">${r.route_order}</td>
-      <td>${r.est_duration}</td>
-      <td>${rev > 0 ? '<span class="money-green">$' + fmt(rev) + '</span>' : '<span style="color:var(--gray-300)">$0</span>'}</td>
-      <td>${getScheduleStatusBadge(r.status)}</td>
-    </tr>`;
+  document.getElementById('schedule-table').innerHTML = sorted.map(r => {
+    const rev = ticket && Number(r.revenue) > 0 ? ticket : Number(r.revenue);
+    return `<tr><td class="font-semibold">${r.time_slot}</td><td>${r.customer}</td><td style="font-size:12px">${r.address}</td><td>${r.service_type}</td><td class="font-semibold">${r.assigned_tech}</td><td style="text-align:center">${r.route_order}</td><td>${r.est_duration}</td><td>${rev > 0 ? '<span class="money-green">$' + fmt(rev) + '</span>' : '<span style="color:var(--gray-300)">$0</span>'}</td><td>${getScheduleStatusBadge(r.status)}</td></tr>`;
   }).join('');
-
-  tbody.innerHTML = html;
 }
 
 function renderSavings() {
   document.getElementById('savings-grid').innerHTML = `
-    <div class="savings-card">
-      <div class="savings-label">Weekly Time Saved</div>
-      <div class="savings-value">15+ hrs</div>
-    </div>
-    <div class="savings-card">
-      <div class="savings-label">Daily Fuel Savings</div>
-      <div class="savings-value">$200+</div>
-    </div>
-    <div class="savings-card">
-      <div class="savings-label">Capacity Increase</div>
-      <div class="savings-value">+75%</div>
-    </div>
-    <div class="savings-card">
-      <div class="savings-label">Dispatcher Saved</div>
-      <div class="savings-value">$45K/yr</div>
-    </div>
-  `;
+    <div class="savings-card"><div class="savings-label">Weekly Time Saved</div><div class="savings-value">15+ hrs</div></div>
+    <div class="savings-card"><div class="savings-label">Daily Fuel Savings</div><div class="savings-value">$200+</div></div>
+    <div class="savings-card"><div class="savings-label">Capacity Increase</div><div class="savings-value">+75%</div></div>
+    <div class="savings-card"><div class="savings-label">Dispatcher Saved</div><div class="savings-value">$45K/yr</div></div>`;
+}
+
+// Schedule Cards View
+function renderScheduleCards() {
+  const sorted = [...scheduleData].sort((a, b) => timeToMinutes(a.time_slot) - timeToMinutes(b.time_slot));
+
+  const groups = { morning: [], afternoon: [], evening: [] };
+  sorted.forEach(r => {
+    const mins = timeToMinutes(r.time_slot);
+    if (mins < 720) groups.morning.push(r);
+    else if (mins < 1020) groups.afternoon.push(r);
+    else groups.evening.push(r);
+  });
+
+  document.getElementById('schedule-count').textContent = `${sorted.length} appointments`;
+
+  let html = '';
+  const groupNames = { morning: 'Morning (Before 12 PM)', afternoon: 'Afternoon (12-5 PM)', evening: 'Evening (After 5 PM)' };
+  for (const [key, items] of Object.entries(groups)) {
+    if (items.length === 0) continue;
+    html += `<div class="schedule-group"><div class="schedule-group-title">${groupNames[key]} (${items.length})</div><div class="schedule-cards">`;
+    html += items.map(r => {
+      const rev = Number(r.revenue);
+      return `<div class="schedule-card">
+        <div class="sc-time">${r.time_slot}</div>
+        <div class="sc-details">
+          <div class="sc-customer">${r.customer}</div>
+          <div class="sc-address">${r.address}</div>
+          <div class="sc-meta">
+            <span class="sc-tech">${r.assigned_tech}</span>
+            <span class="badge badge-purple" style="font-size:10px;padding:2px 6px">${r.service_type}</span>
+            ${getScheduleStatusBadge(r.status)}
+            ${rev > 0 ? `<span class="money-green" style="font-size:12px">$${fmt(rev)}</span>` : ''}
+          </div>
+        </div>
+      </div>`;
+    }).join('');
+    html += '</div></div>';
+  }
+  document.getElementById('schedule-cards-container').innerHTML = html;
+}
+
+// Technician Profiles View
+function renderTechProfiles() {
+  document.getElementById('tech-count').textContent = `${techData.length} technicians`;
+  const colors = ['#5347CE', '#16C8C7', '#4896FE', '#22C55E', '#F59E0B', '#EF4444', '#8B5CF6', '#EC4899'];
+
+  document.getElementById('tech-profiles').innerHTML = techData.map((t, i) => {
+    const initials = t.tech_name.split(' ').map(w => w[0]).join('');
+    const utilNum = parseInt(t.utilization);
+    const utilColor = utilNum >= 90 ? 'var(--green-500)' : utilNum >= 75 ? 'var(--blue-500)' : utilNum >= 50 ? 'var(--amber-500)' : 'var(--gray-500)';
+    const specs = t.specialties ? t.specialties.join(', ') : '';
+    const isOff = t.status === 'Off Duty';
+
+    return `<div class="tech-profile"${isOff ? ' style="opacity:0.5"' : ''}>
+      <div class="tp-avatar" style="background:${colors[i % colors.length]}">${initials}</div>
+      <div class="tp-name">${t.tech_name}</div>
+      <span class="badge badge-purple" style="font-size:10px;margin-bottom:4px">${t.certification_level}</span>
+      <div class="tp-specs">${specs}</div>
+      ${getTechStatusBadge(t.status)}
+      <div class="tp-stats">
+        <div class="tp-stat"><div class="tp-stat-val">${t.jobs_today}</div><div class="tp-stat-label">Jobs</div></div>
+        <div class="tp-stat"><div class="tp-stat-val">${t.avg_drive_time}</div><div class="tp-stat-label">Avg Drive</div></div>
+        <div class="tp-stat"><div class="tp-stat-val" style="color:${utilColor}">${t.utilization}</div><div class="tp-stat-label">Util</div></div>
+      </div>
+      <div class="tp-util-bar"><div class="tp-util-fill" style="width:${utilNum}%;background:${utilColor}"></div></div>
+    </div>`;
+  }).join('');
 }
 
 async function init() {
-  [techData, scheduleData] = await Promise.all([fetchTechs(), fetchSchedule()]);
+  [techData, scheduleData] = await Promise.all([
+    fetchJSON('technician_dispatch?order=utilization.desc'),
+    fetchJSON('daily_schedule?order=time_slot')
+  ]);
 
-  renderKPIs();
-  renderCompareCards();
+  document.getElementById('badge-schedule').textContent = scheduleData.length;
+  document.getElementById('badge-techs').textContent = techData.length;
 
-  // Utilization horizontal bar chart (active techs only)
+  renderKPIs(); renderCompareCards();
+
+  // Utilization chart
   const activeTechs = techData.filter(t => t.status !== 'Off Duty');
   const techNames = activeTechs.map(t => t.tech_name);
   const techUtils = activeTechs.map(t => parseInt(t.utilization));
@@ -526,9 +420,10 @@ async function init() {
     tooltip: { y: { formatter: v => v + '% utilization' }, theme: 'light' }
   }).render();
 
-  renderTechTable();
-  renderScheduleTable();
-  renderSavings();
+  renderTechTable(); renderScheduleTable(); renderSavings();
+
+  const hash = location.hash.slice(1);
+  if (hash && hash !== 'dashboard') switchView(hash);
 }
 
 init();
