@@ -11,6 +11,9 @@
 
 <!-- Sidebar -->
 <aside class="sidebar">
+  <div class="sidebar-toggle" onclick="toggleSidebar()">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+  </div>
   <div class="sidebar-brand">
     <span class="brand-name">Sonor AI</span>
   </div>
@@ -558,6 +561,12 @@ function renderAppointments() {
 }
 
 // ── Init ──
+function toggleSidebar() {
+  document.body.classList.toggle('sidebar-collapsed');
+  localStorage.setItem('sidebar-collapsed', document.body.classList.contains('sidebar-collapsed'));
+}
+if (localStorage.getItem('sidebar-collapsed') === 'true') document.body.classList.add('sidebar-collapsed');
+
 async function init() {
   [aiData, allCalls] = await Promise.all([
     fetchJSON('monthly_performance?order=month_order.desc'),
