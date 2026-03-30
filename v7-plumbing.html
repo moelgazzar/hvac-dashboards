@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Dashboard - Comfort Plumbing Co.</title>
+<link rel="stylesheet" href="components/design-system.css">
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+</head>
+<body>
+
+<!-- Sidebar -->
+<aside class="sidebar">
+  <div class="sidebar-brand">
+    <span class="brand-name">Sonor AI</span>
+  </div>
+
+  <div class="sidebar-section">
+    <div class="sidebar-section-label">Campaign</div>
+    <a class="sidebar-item active" data-view="dashboard" onclick="switchView('dashboard')">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+      Dashboard
+    </a>
+    <a class="sidebar-item" data-view="leadlist" onclick="switchView('leadlist')">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+      Lead List
+      <span class="sidebar-badge" id="badge-leads">--</span>
+    </a>
+    <a class="sidebar-item" data-view="results" onclick="switchView('results')">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+      Results
+    </a>
+  </div>
+
+  <div class="sidebar-section">
+    <div class="sidebar-section-label">Manage</div>
+    <a class="sidebar-item" data-view="campaigns" onclick="switchView('campaigns')">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg>
+      Campaigns
+    </a>
+    <a class="sidebar-item" data-view="settings" onclick="switchView('settings')">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+      Settings
+    </a>
+  </div>
+
+  <div class="sidebar-footer">
+    <div class="sidebar-user">
+      <div class="sidebar-avatar">CP</div>
+      <div class="sidebar-user-info">
+        <div class="user-name">Comfort Plumbing Co.</div>
+        <div class="user-role">Pro Plan</div>
+      </div>
+    </div>
+  </div>
+</aside>
+
+<!-- Main -->
+<div class="main">
+  <div class="topbar">
+    <div class="topbar-left"><h1 id="page-title">Dead Lead Campaign</h1></div>
+    <div class="topbar-right">
+      <div class="date-range">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        Mar 15 - Mar 17, 2026
+      </div>
+      <button class="btn-outline">Export</button>
+    </div>
+  </div>
+
+  <div class="content">
+
+    <!-- ====== DASHBOARD VIEW ====== -->
+    <div id="view-dashboard" class="view active">
+      <div class="kpi-grid cols-5" id="kpis"></div>
+
+      <div class="chart-grid cols-3">
+        <div class="chart-card">
+          <div class="chart-header">
+            <div><div class="chart-title">Campaign Funnel</div><div class="chart-meta mt-4">500 dead leads, one AI calling campaign</div></div>
+          </div>
+          <div id="chart-funnel" style="height:300px"></div>
+        </div>
+        <div class="chart-card">
+          <div class="chart-header">
+            <div><div class="chart-title">Bookings by Service</div><div class="chart-meta mt-4">From booked appointments</div></div>
+          </div>
+          <div id="chart-services" style="height:300px"></div>
+        </div>
+      </div>
+
+      <div class="chart-card" style="margin-bottom:24px" id="roi-section"></div>
+
+      <div class="chart-card">
+        <div class="chart-header">
+          <div><div class="chart-title">Lead Results</div><div class="text-xs text-muted mt-4">Showing 50 of 500 leads</div></div>
+          <div class="text-xs text-muted">Updated 4 min ago</div>
+        </div>
+        <div class="mt-16">
+          <table class="data-table">
+            <thead><tr><th>Lead Name</th><th>Phone</th><th>Last Service</th><th>Days Ago</th><th>Status</th><th>Service Requested</th><th>Appt Date</th><th>Est. Revenue</th></tr></thead>
+            <tbody id="table-body"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="dashboard-footer"><p>Comfort Plumbing Co. &middot; AI Outbound Agent &middot; Powered by Sonor AI</p></div>
+    </div>
+
+    <!-- ====== LEAD LIST VIEW ====== -->
+    <div id="view-leadlist" class="view">
+      <div class="view-header">
+        <div style="display:flex;align-items:center;gap:12px">
+          <span class="view-title">Lead List</span>
+          <span class="view-count" id="leadlist-count"></span>
+        </div>
+      </div>
+      <div class="filter-pills" id="leadlist-filters"></div>
+      <div class="chart-card">
+        <div class="mt-16" style="max-height:70vh;overflow-y:auto">
+          <table class="data-table">
+            <thead><tr><th>Lead Name</th><th>Phone</th><th>Last Service</th><th>Last Service Date</th><th>Days Since</th><th>Call Status</th><th>Interest</th><th>Service Requested</th><th>Appt Date</th><th>Est. Revenue</th></tr></thead>
+            <tbody id="leadlist-body"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- ====== RESULTS VIEW ====== -->
+    <div id="view-results" class="view">
+      <div class="view-header"><span class="view-title">Campaign Results</span></div>
+
+      <div class="chart-card" style="margin-bottom:24px" id="results-roi"></div>
+
+      <div class="chart-grid cols-3">
+        <div class="chart-card">
+          <div class="chart-header"><div class="chart-title">Campaign Funnel</div></div>
+          <div id="results-funnel" style="height:300px"></div>
+        </div>
+        <div class="chart-card">
+          <div class="chart-header"><div class="chart-title">Bookings by Service</div></div>
+          <div id="results-services" style="height:300px"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ====== PLACEHOLDER VIEWS ====== -->
+    <div id="view-campaigns" class="view"><div class="placeholder-view"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg><div class="pv-title">Campaign Manager</div><div class="pv-desc">Create and manage AI calling campaigns coming soon</div></div></div>
+    <div id="view-settings" class="view"><div class="placeholder-view"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06"/></svg><div class="pv-title">Settings</div><div class="pv-desc">Campaign configuration coming soon</div></div></div>
+
+  </div>
+</div>
+
+<script>
+const SUPABASE_URL = 'https://gjyaplpthwbujuqrmden.supabase.co';
+const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdqeWFwbHB0aHdidWp1cXJtZGVuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM2OTYxMDQsImV4cCI6MjA4OTI3MjEwNH0.UrRD4OtP6zPT8VurhNWgpf1lQOZFoGwYrwvdEoErUwI';
+
+let leadsData = [];
+let overrides = {};
+let viewLoaded = { dashboard: true };
+let activeLeadFilter = 'All';
+
+const TOTAL_LEADS = 500;
+const SCALE = 10;
+
+async function fetchJSON(path) {
+  const res = await fetch(`${SUPABASE_URL}/rest/v1/${path}`, { headers: { 'apikey': SUPABASE_KEY, 'Authorization': `Bearer ${SUPABASE_KEY}` } });
+  return res.json();
+}
+function fmt(n) { return Number(n).toLocaleString(); }
+function getVal(key, fallback) { return overrides[key] !== undefined ? overrides[key] : fallback; }
+
+// ── View Switching ──
+function switchView(viewId) {
+  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+  const view = document.getElementById('view-' + viewId);
+  if (view) view.classList.add('active');
+  document.querySelectorAll('.sidebar-item').forEach(i => i.classList.remove('active'));
+  const si = document.querySelector(`[data-view="${viewId}"]`);
+  if (si) si.classList.add('active');
+  const titles = { dashboard: 'Dead Lead Campaign', leadlist: 'Lead List', results: 'Campaign Results', campaigns: 'Campaigns', settings: 'Settings' };
+  document.getElementById('page-title').textContent = titles[viewId] || 'Dashboard';
+  history.replaceState(null, '', '#' + viewId);
+  if (!viewLoaded[viewId]) {
+    if (viewId === 'leadlist') renderLeadList();
+    if (viewId === 'results') renderResultsView();
+    viewLoaded[viewId] = true;
+  }
+}
+window.addEventListener('hashchange', () => { switchView(location.hash.slice(1) || 'dashboard'); });
+
+// ── Editable KPI System ──
+function editKPI(card) {
+  const kpiName = card.dataset.kpi;
+  const valEl = card.querySelector('.kpi-value');
+  const currentText = valEl.textContent.replace(/[$,%\s]/g, '').replace(/,/g, '');
+  const current = parseFloat(currentText) || 0;
+  valEl.innerHTML = `<input class="kpi-input" type="number" value="${Math.round(current)}" id="kpi-input-active" autofocus>`;
+  const input = document.getElementById('kpi-input-active');
+  input.focus(); input.select();
+  function apply() {
+    const val = parseFloat(input.value);
+    if (val >= 0) { overrides[kpiName] = val; recalcAll(); }
+    input.removeEventListener('blur', apply);
+  }
+  input.addEventListener('keydown', e => { if (e.key === 'Enter') apply(); });
+  input.addEventListener('blur', apply);
+}
+
+// ── Stats Calculation ──
+function getStats() {
+  const sampleBooked = leadsData.filter(r => r.interested === 'Yes - Booked');
+  const sampleReached = leadsData.filter(r => r.call_status === 'Reached');
+  const sampleFollowUp = leadsData.filter(r => r.interested === 'Maybe - Follow Up');
+
+  const totalLeads = getVal('leadsCalled', TOTAL_LEADS);
+  const booked = sampleBooked.length * SCALE;
+  const reached = sampleReached.length * SCALE;
+  const followUp = sampleFollowUp.length * SCALE;
+
+  const rawReachRate = (reached / TOTAL_LEADS) * 100;
+  const reachRate = getVal('reachRate', rawReachRate);
+  const reachedCount = Math.round(totalLeads * reachRate / 100);
+
+  const sampleRevenue = sampleBooked.reduce((s, r) => s + Number(r.estimated_revenue), 0);
+  const rawAvgTicket = sampleBooked.length > 0 ? Math.round(sampleRevenue / sampleBooked.length) : 0;
+  const avgTicket = getVal('avgTicket', rawAvgTicket);
+  const totalRevenue = overrides.avgTicket ? booked * avgTicket : sampleRevenue * SCALE;
+  const campaignCost = getVal('campaignCost', 200);
+  const roi = campaignCost > 0 ? (((totalRevenue - campaignCost) / campaignCost) * 100).toFixed(0) : 0;
+
+  return { totalLeads, booked, reached, reachedCount, followUp, reachRate, avgTicket, totalRevenue, campaignCost, roi };
+}
+
+function recalcAll() {
+  renderKPIs(); renderROI(); renderTable();
+  if (viewLoaded.leadlist) renderLeadList();
+  if (viewLoaded.results) renderResultsView();
+}
+
+// ── KPI Cards ──
+function renderKPIs() {
+  const s = getStats();
+  document.getElementById('kpis').innerHTML = `
+    <div class="kpi-card editable-kpi" data-kpi="leadsCalled" onclick="editKPI(this)">
+      <div class="kpi-header"><span class="kpi-label">Leads Called</span><div class="kpi-icon purple"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div></div>
+      <div class="kpi-value">${fmt(s.totalLeads)}</div>
+      <div class="kpi-sub">${s.reachRate.toFixed(1)}% reach rate</div>
+      <div class="edit-hint">Click to adjust</div>
+    </div>
+    <div class="kpi-card editable-kpi" data-kpi="reachRate" onclick="editKPI(this)">
+      <div class="kpi-header"><span class="kpi-label">Reach Rate</span><div class="kpi-icon teal"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div></div>
+      <div class="kpi-value">${s.reachRate.toFixed(1)}%</div>
+      <div class="kpi-sub">${fmt(s.reachedCount)} leads reached</div>
+      <div class="edit-hint">Click to adjust</div>
+    </div>
+    <div class="kpi-card editable-kpi" data-kpi="avgTicket" onclick="editKPI(this)">
+      <div class="kpi-header"><span class="kpi-label">Avg Ticket Value</span><div class="kpi-icon green"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div></div>
+      <div class="kpi-value">$${fmt(s.avgTicket)}</div>
+      <div class="kpi-sub">Per booked appointment</div>
+      <div class="edit-hint">Click to adjust</div>
+    </div>
+    <div class="kpi-card editable-kpi" data-kpi="totalRevenue" onclick="editKPI(this)">
+      <div class="kpi-header"><span class="kpi-label">Revenue Recovered</span><div class="kpi-icon purple"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg></div></div>
+      <div class="kpi-value"><span class="money-green">$${fmt(s.totalRevenue)}</span></div>
+      <div class="kpi-sub">${fmt(s.booked)} appointments booked</div>
+      <div class="edit-hint">Click to adjust</div>
+    </div>
+    <div class="kpi-card editable-kpi" data-kpi="campaignCost" onclick="editKPI(this)">
+      <div class="kpi-header"><span class="kpi-label">Campaign Cost</span><div class="kpi-icon amber"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div></div>
+      <div class="kpi-value">$${fmt(s.campaignCost)}</div>
+      <div class="kpi-sub">${fmt(s.roi)}% ROI</div>
+      <div class="edit-hint">Click to adjust</div>
+    </div>`;
+}
+
+// ── ROI Section ──
+function renderROITo(containerId) {
+  const s = getStats();
+  document.getElementById(containerId).innerHTML = `
+    <div class="chart-header"><div class="chart-title">Campaign ROI</div></div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:16px;">
+      <div style="text-align:center;padding:20px;background:var(--gray-50);border:1px solid var(--gray-200);border-radius:var(--radius-md);">
+        <div style="font-size:11px;text-transform:uppercase;letter-spacing:0.05em;color:var(--gray-500);margin-bottom:6px;font-weight:600;">Campaign Cost</div>
+        <div style="font-size:26px;font-weight:800;color:var(--gray-900);">$${fmt(s.campaignCost)}</div>
+      </div>
+      <div style="text-align:center;padding:20px;background:var(--gray-50);border:1px solid var(--gray-200);border-radius:var(--radius-md);">
+        <div style="font-size:11px;text-transform:uppercase;letter-spacing:0.05em;color:var(--gray-500);margin-bottom:6px;font-weight:600;">Revenue Recovered</div>
+        <div style="font-size:26px;font-weight:800;color:var(--green-500);">$${fmt(s.totalRevenue)}</div>
+      </div>
+      <div style="text-align:center;padding:20px;background:#f0fdf4;border:1px solid #bbf7d0;border-radius:var(--radius-md);">
+        <div style="font-size:11px;text-transform:uppercase;letter-spacing:0.05em;color:var(--gray-500);margin-bottom:6px;font-weight:600;">Return on Investment</div>
+        <div style="font-size:26px;font-weight:800;color:var(--green-500);">${fmt(s.roi)}%</div>
+      </div>
+    </div>`;
+}
+function renderROI() { renderROITo('roi-section'); }
+
+// ── Funnel Chart ──
+function renderFunnelTo(containerId) {
+  const s = getStats();
+  const interested = s.booked + s.followUp;
+
+  new ApexCharts(document.querySelector('#' + containerId), {
+    chart: { type: 'bar', height: 300, toolbar: { show: false }, fontFamily: 'Inter' },
+    series: [{ name: 'Leads', data: [s.totalLeads, s.reachedCount, interested, s.booked] }],
+    colors: ['#5347CE', '#4896FE', '#16C8C7', '#22C55E'],
+    plotOptions: { bar: { borderRadius: 6, columnWidth: '55%', distributed: true } },
+    dataLabels: { enabled: true, formatter: (v, opt) => {
+      const pct = ((v / s.totalLeads) * 100).toFixed(1);
+      return fmt(v) + ' (' + pct + '%)';
+    }, style: { fontSize: '12px', fontWeight: 700, fontFamily: 'Inter' }, offsetY: -4 },
+    legend: { show: false },
+    grid: { borderColor: '#F3F4F6', strokeDashArray: 3 },
+    xaxis: { categories: ['Called', 'Reached', 'Interested', 'Booked'], labels: { style: { colors: '#6F767E', fontSize: '12px', fontFamily: 'Inter', fontWeight: 600 } }, axisBorder: { show: false }, axisTicks: { show: false } },
+    yaxis: { labels: { style: { colors: '#9CA3AF', fontSize: '11px', fontFamily: 'Inter' } } },
+    tooltip: { y: { formatter: v => fmt(v) + ' leads' }, theme: 'light' }
+  }).render();
+}
+
+// ── Services Chart ──
+function renderServicesTo(containerId) {
+  const bookedLeads = leadsData.filter(r => r.interested === 'Yes - Booked');
+  const serviceMap = {};
+  bookedLeads.forEach(r => { const svc = r.service_requested || 'Other'; serviceMap[svc] = (serviceMap[svc] || 0) + 1; });
+  const serviceLabels = Object.keys(serviceMap).sort((a, b) => serviceMap[b] - serviceMap[a]);
+  const serviceCounts = serviceLabels.map(s => serviceMap[s] * SCALE);
+
+  new ApexCharts(document.querySelector('#' + containerId), {
+    chart: { type: 'bar', height: 300, toolbar: { show: false }, fontFamily: 'Inter' },
+    series: [{ name: 'Bookings', data: serviceCounts }],
+    colors: ['#5347CE'],
+    plotOptions: { bar: { borderRadius: 5, columnWidth: '55%', horizontal: true } },
+    dataLabels: { enabled: true, style: { fontSize: '12px', fontWeight: 700, fontFamily: 'Inter' }, offsetX: 4 },
+    legend: { show: false },
+    grid: { borderColor: '#F3F4F6', strokeDashArray: 3 },
+    xaxis: { categories: serviceLabels, labels: { style: { colors: '#9CA3AF', fontSize: '11px', fontFamily: 'Inter' } }, axisBorder: { show: false }, axisTicks: { show: false } },
+    yaxis: { labels: { style: { colors: '#6F767E', fontSize: '12px', fontFamily: 'Inter', fontWeight: 500 } } },
+    tooltip: { y: { formatter: v => v + ' bookings' }, theme: 'light' }
+  }).render();
+}
+
+// ── Status Badges ──
+function getStatusBadge(row) {
+  if (row.interested === 'Yes - Booked') return '<span class="badge badge-green">Booked</span>';
+  if (row.interested === 'Maybe - Follow Up') return '<span class="badge badge-amber">Follow Up</span>';
+  if (row.interested === 'Not Interested') return '<span class="badge badge-red">Not Interested</span>';
+  if (row.call_status === 'Voicemail') return '<span class="badge badge-gray">Voicemail</span>';
+  if (row.call_status === 'No Answer') return '<span class="badge badge-gray">No Answer</span>';
+  if (row.call_status === 'Wrong Number') return '<span class="badge badge-gray">Wrong Number</span>';
+  return '<span class="badge badge-gray">' + row.call_status + '</span>';
+}
+
+function getCallStatusBadge(status) {
+  return status === 'Reached' ? '<span class="badge badge-green">Reached</span>' : '<span class="badge badge-gray">' + status + '</span>';
+}
+
+function getInterestBadge(interested) {
+  if (interested === 'Yes - Booked') return '<span class="badge badge-green">Booked</span>';
+  if (interested === 'Maybe - Follow Up') return '<span class="badge badge-amber">Follow Up</span>';
+  if (interested === 'Not Interested') return '<span class="badge badge-red">Not Interested</span>';
+  return '<span class="badge badge-gray">-</span>';
+}
+
+// ── Dashboard Table ──
+function renderTable() {
+  const ticket = getVal('avgTicket', null);
+  document.getElementById('table-body').innerHTML = leadsData.map(r => {
+    const rev = r.interested === 'Yes - Booked' ? (ticket ? ticket : Number(r.estimated_revenue)) : 0;
+    return `<tr>
+      <td class="font-semibold">${r.lead_name}</td>
+      <td style="font-size:12px;color:var(--gray-500)">${r.phone}</td>
+      <td>${r.last_service}</td>
+      <td>${r.days_since_service}d</td>
+      <td>${getStatusBadge(r)}</td>
+      <td>${r.service_requested || '<span style="color:var(--gray-300)">-</span>'}</td>
+      <td>${r.appointment_date || '<span style="color:var(--gray-300)">-</span>'}</td>
+      <td>${rev > 0 ? '<span class="money-green">$' + fmt(rev) + '</span>' : '<span style="color:var(--gray-300)">-</span>'}</td>
+    </tr>`;
+  }).join('');
+}
+
+// ── Lead List View ──
+function renderLeadList() {
+  const statuses = ['All', 'Reached', 'Voicemail', 'No Answer', 'Wrong Number'];
+  const filtered = activeLeadFilter === 'All' ? leadsData : leadsData.filter(r => r.call_status === activeLeadFilter);
+
+  document.getElementById('leadlist-count').textContent = `${filtered.length} leads (sample of ${TOTAL_LEADS})`;
+  document.getElementById('leadlist-filters').innerHTML = statuses.map(s => {
+    const cnt = s === 'All' ? leadsData.length : leadsData.filter(r => r.call_status === s).length;
+    return `<button class="filter-pill${s === activeLeadFilter ? ' active' : ''}" onclick="activeLeadFilter='${s}';renderLeadList()">${s} (${cnt})</button>`;
+  }).join('');
+
+  const sorted = [...filtered].sort((a, b) => a.lead_name.localeCompare(b.lead_name));
+  document.getElementById('leadlist-body').innerHTML = sorted.map(r => {
+    const rev = r.interested === 'Yes - Booked' ? Number(r.estimated_revenue) : 0;
+    return `<tr>
+      <td class="font-semibold">${r.lead_name}</td>
+      <td style="font-size:12px;color:var(--gray-500)">${r.phone}</td>
+      <td>${r.last_service}</td>
+      <td style="font-size:12px">${r.last_service_date || '-'}</td>
+      <td>${r.days_since_service}d</td>
+      <td>${getCallStatusBadge(r.call_status)}</td>
+      <td>${getInterestBadge(r.interested)}</td>
+      <td>${r.service_requested || '<span style="color:var(--gray-300)">-</span>'}</td>
+      <td>${r.appointment_date || '<span style="color:var(--gray-300)">-</span>'}</td>
+      <td>${rev > 0 ? '<span class="money-green">$' + fmt(rev) + '</span>' : '<span style="color:var(--gray-300)">-</span>'}</td>
+    </tr>`;
+  }).join('');
+}
+
+// ── Results View ──
+function renderResultsView() {
+  renderROITo('results-roi');
+  renderFunnelTo('results-funnel');
+  renderServicesTo('results-services');
+}
+
+// ── Init ──
+async function init() {
+  leadsData = await fetchJSON('plumbing_dead_leads?order=estimated_revenue.desc');
+
+  document.getElementById('badge-leads').textContent = fmt(TOTAL_LEADS);
+
+  renderKPIs();
+  renderFunnelTo('chart-funnel');
+  renderServicesTo('chart-services');
+  renderROI();
+  renderTable();
+
+  const hash = location.hash.slice(1);
+  if (hash && hash !== 'dashboard') switchView(hash);
+}
+
+init();
+</script>
+</body>
+</html>
