@@ -12,7 +12,6 @@
 <!-- Sidebar -->
 <aside class="sidebar">
   <div class="sidebar-brand">
-    <div class="logo">S</div>
     <span class="brand-name">Sonor AI</span>
   </div>
 
@@ -88,7 +87,7 @@
 
     <!-- ====== DASHBOARD VIEW ====== -->
     <div id="view-dashboard" class="view active">
-      <div class="kpi-grid cols-5" id="kpis"></div>
+      <div class="kpi-grid cols-4" id="kpis"></div>
 
       <div class="chart-grid cols-3">
         <div class="chart-card">
@@ -364,16 +363,6 @@ function renderKPIs() {
       <div class="edit-hint">Click to adjust</div>
     </div>
 
-    <div class="kpi-card editable-kpi" data-kpi="missRate" onclick="editKPI(this)">
-      <div class="kpi-header">
-        <span class="kpi-label">Miss Rate</span>
-        <div class="kpi-icon amber"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>
-      </div>
-      <div class="kpi-value">${missRate}%</div>
-      <span class="kpi-change up">-25.3pts</span>
-      <div class="kpi-sub">${fmt(totalMissed)} dropped (bad signal, hang-ups)</div>
-      <div class="edit-hint">Click to adjust</div>
-    </div>
   `;
 }
 
